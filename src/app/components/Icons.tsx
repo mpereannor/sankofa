@@ -41,3 +41,40 @@ xmlns="http://www.w3.org/2000/svg"
 </svg>
 );
 
+
+
+export const Menu = ({ size = 21, color = "#ffffff", ...props }) => (
+<svg
+width={size}
+height={size}
+fill={color}
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"
+{...props}
+>
+<path
+fillRule="evenodd"
+d="M3.6 6a1.2 1.2 0 0 1 1.2-1.2h14.4a1.2 1.2 0 1 1 0 2.4H4.8A1.2 1.2 0 0 1 3.6 6Zm0 6a1.2 1.2 0 0 1 1.2-1.2h14.4a1.2 1.2 0 1 1 0 2.4H4.8A1.2 1.2 0 0 1 3.6 12Zm7.2 6a1.2 1.2 0 0 1 1.2-1.2h7.2a1.2 1.2 0 1 1 0 2.4H12a1.2 1.2 0 0 1-1.2-1.2Z"
+clipRule="evenodd"
+/>
+</svg>
+);
+
+
+export const Close = ({ size = 21, color = "#ffffff", ...props }) => (
+<svg
+width={size}
+height={size}
+fill={color}
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"
+{...props}
+>
+<path
+fillRule="evenodd"
+d="M5.152 5.152a1.2 1.2 0 0 1 1.696 0L12 10.303l5.152-5.151a1.2 1.2 0 1 1 1.696 1.696L13.697 12l5.151 5.152a1.2 1.2 0 0 1-1.696 1.696L12 13.697l-5.152 5.151a1.2 1.2 0 0 1-1.696-1.696L10.303 12 5.152 6.848a1.2 1.2 0 0 1 0-1.696Z"
+clipRule="evenodd"
+/>
+</svg>
+);
+
