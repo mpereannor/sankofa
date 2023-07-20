@@ -102,7 +102,7 @@ const SearchBarModal = ({ closeModal }: any) => {
             duration: 0.2,
           },
         }}
-        className=" flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none flex-col max-w-xl  h-fit mt-20 mx-auto  rounded-xl" style={{backgroundColor: "#F4F2F2"}}
+        className=" flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none flex-col w-5/6 md:w-full md:max-w-xl max-w-xs h-fit mt-20 mx-auto  rounded-xl" style={{backgroundColor: "#F4F2F2"}}
       >
         <SearchInput
           value={query}
