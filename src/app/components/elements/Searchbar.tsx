@@ -16,6 +16,7 @@ const SearchBarModal = ({ closeModal }: any) => {
   const [searchResults, setSearchResults] = useState<Product[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
 
+
   useEffect(() => {
     const fetchProducts = async () => {
       const { data } = await axios.get("https://fakestoreapi.com/products")
@@ -101,26 +102,26 @@ const SearchBarModal = ({ closeModal }: any) => {
             duration: 0.2,
           },
         }}
-        className="justify-center mt-10  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+        className=" flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none flex-col max-w-xl  h-fit mt-20 mx-auto  rounded-xl" style={{backgroundColor: "#F4F2F2"}}
       >
-        <div className="flex flex-col max-w-xl mt-20 mx-auto">
-          <SearchInput
-            value={query}
-            onChange={handleQueryChange}
-            onKeyDown={handleKeyDown}
-            inputRef={inputRef}
-            placeholder="Search Artwork"
+        <SearchInput
+          value={query}
+          onChange={handleQueryChange}
+          onKeyDown={handleKeyDown}
+          inputRef={inputRef}
+          placeholder="Search Artwork"
+          closeModal={closeModal}
+        />
+        {query !== "" && searchResults.length > 0 && (
+          <ProductList
+            products={searchResults}
+            selectedProductIndex={selectedProductIndex}
+            handleProductClick={handleProductClick}
           />
-          {query !== "" && searchResults.length > 0 && (
-            <ProductList
-              products={searchResults}
-              selectedProductIndex={selectedProductIndex}
-              handleProductClick={handleProductClick}
-            />
-          )}
-        </div>
+        )}
+        {/* </div> */}
       </motion.div>
-      <div className="opacity-50 fixed inset-0 z-40 bg-black "></div>
+      <div onClick={closeModal}className="opacity-80 fixed inset-0 z-40 bg-black "></div>
     </>
   )
 }

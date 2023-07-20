@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
  
 type Product = {
   id: number
@@ -17,30 +19,10 @@ const ProductList: React.FC<ProductListProps> = ({
   handleProductClick,
 }) => {
   return (
-    <motion.div
-      className="bg-sky-500/50
-
-      max-h-96 overflow-y-scroll resultProductContainer"
-      variants={{
-        open: {
-          clipPath: "inset(0% 0% 0% 0% round 10px)",
-          transition: {
-            type: "spring",
-            bounce: 0,
-            duration: 0.7,
-            delayChildren: 0.3,
-            staggerChildren: 0.05
-          }
-        },
-        closed: {
-          clipPath: "inset(10% 50% 90% 50% round 10px)",
-          transition: {
-            type: "spring",
-            bounce: 0,
-            duration: 0.3
-          }
-        }
-      }}
+    <div
+      className="bg-zinc-800	
+      max-h-96 overflow-y-scroll resultProductContainer rounded-b-xl"
+     
     >
       {products.map((product, index) => (
         <div
@@ -55,7 +37,7 @@ const ProductList: React.FC<ProductListProps> = ({
           <img src={product.image} alt="" className=" w-8" />
         </div>
       ))}
-    </motion.div>
+    </div>
   )
 }
 

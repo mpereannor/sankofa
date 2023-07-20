@@ -29,10 +29,9 @@ body {
 .resultProductContainer::-webkit-scrollbar {
   width: 8px;
   height: 20px;
-  border-radius: 10px;
-  background: #e0cbcb;
+  background: #C4C4C4;
+  border-bottom-right-radius: 0.75rem;
 }
 .resultProductContainer::-webkit-scrollbar-thumb {
-  background: #d2a231;
-  border-radius: 10px;
+  background: black;
 }

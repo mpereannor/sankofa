@@ -13,6 +13,7 @@ import {
 import { useDimensions } from "../../lib/hooks/useDimensions"
 import { MenuToggle, Navigation } from "./Menu"
 import SearchBarModal from "./elements/Searchbar"
+
 function Header() {
   const [isOpen, toggleOpen] = useCycle(false, true)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -49,7 +50,7 @@ function Header() {
             whileTap={{ scale: 0.95 }}
             type="button"
             className="bg-transparent text-white hover:bg-white hover:text-black py-1 px-6 border border-white font-light hover:border-transparent "
-          >
+          >  
             SHOP
           </motion.button>
           <motion.div
@@ -81,7 +82,7 @@ function Header() {
           />
           <MenuToggle toggle={() => toggleOpen()} />
 
-          <Navigation />
+          <Navigation openModal={openModal} />
         </motion.nav>
       </header>
     </>

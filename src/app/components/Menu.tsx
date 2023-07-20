@@ -51,7 +51,7 @@ const variants = {
   },
 }
 
-export const Navigation = () => (
+export const Navigation = ({openModal}:any) => (
   <motion.ul
   className="absolute top-12 w-full m-0"
     variants={variants}
@@ -62,7 +62,7 @@ export const Navigation = () => (
     //   margin: 0,
     // }}
   >
-    <MenuItem />
+    <MenuItem openModal={openModal} />
   </motion.ul>
 )
 
@@ -83,7 +83,7 @@ const menuItemVariants = {
   },
 }
 
-const MenuItem = () => {
+const MenuItem = ({openModal}:any) => {
   return (
     <motion.div
       className={`flex mt-2 p-10 gap-10 w-screen flex-col items-center h-screen`}
@@ -94,7 +94,8 @@ const MenuItem = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
-        <Search />
+        <Search onClick={openModal
+        } />
       </motion.div>
       <motion.div
         variants={headerVariants}
