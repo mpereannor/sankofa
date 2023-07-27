@@ -12,7 +12,7 @@ import {
 } from "../../lib/animation"
 import { useDimensions } from "../../lib/hooks/useDimensions"
 import { MenuToggle, Navigation } from "./Menu"
-import SearchBarModal from "./elements/Searchbar"
+import SearchBarModal from "./elements/SearchBarModal"
 
 function Header() {
   const [isOpen, toggleOpen] = useCycle(false, true)
