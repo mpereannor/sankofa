@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { Close } from "../Icons"
 
 const ind = [1, 2, 3, 4, 5, 6]
 const ProductModal = ({ closeModal }: any) => {
@@ -30,6 +31,10 @@ const ProductModal = ({ closeModal }: any) => {
         fixed bg-white overflow-x-hidden overflow-y-hidden outline-none inset-0 z-50 focus-outline-none w-full md:w-5/6 mx-auto  md:mt-20 md:rounded-xl md:max-h-[80vh] h-screen "
       >
         <div className=" w-full h-full flex flex-col md:flex-row-reverse items-center  ">
+          <div className=" z-10 absolute top-0 right-0 mx-4 my-2 opacity-50 hover:opacity-100">
+           
+            <Close size={30} className="rounded-2xl bg-black p-1.5" />
+          </div>
           <div className=" w-full h-[70%] md:h-full relative md:w-[50%] lg:w-[60%] ">
             <Image
               src={`https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=922&q=80`}
@@ -50,7 +55,8 @@ const ProductModal = ({ closeModal }: any) => {
                 Color impasto on board, gold leaf
               </p>
               <p className="font-thin text-sm">
-                27 1/2 x 41 3/8 x 1 3/4 in. 70 cm
+                27 1/2 x 41 3/8 x 1 3/4 in. 70 cm{" "}
+                <span className="font-semibold">More Info...</span>
               </p>
               <p className="font-light mt-2">GHS 200.00</p>
             </div>
@@ -69,7 +75,7 @@ const ProductModal = ({ closeModal }: any) => {
                 metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
                 interdum tellus elit sed risus. Maecenas eget condimentum velit,
                 sit amet feugiat lectus.{" "}
-                <span className="font-semibold">Read More...</span>
+                <span className="font-semibold">More Info...</span>
               </p>
             </div>
             <div className="hidden md:block ">
@@ -95,7 +101,6 @@ const ProductModal = ({ closeModal }: any) => {
               </div>
             </div>
             {/* <p className="font-semibold">View More...</p> */}
-
           </div>
         </div>
       </motion.div>
