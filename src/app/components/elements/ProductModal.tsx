@@ -33,7 +33,7 @@ const ProductModal = ({ closeModal }: any) => {
         <div className=" w-full h-full flex flex-col md:flex-row-reverse items-center  ">
           <div className=" z-10 absolute top-0 right-0 mx-4 my-2 opacity-50 hover:opacity-100">
            
-            <Close size={30} className="rounded-2xl bg-black p-1.5" />
+            <Close onClick={closeModal}size={30} className="rounded-2xl bg-black p-1.5" />
           </div>
           <div className=" w-full h-[70%] md:h-full relative md:w-[50%] lg:w-[60%] ">
             <Image
@@ -56,7 +56,7 @@ const ProductModal = ({ closeModal }: any) => {
               </p>
               <p className="font-thin text-sm">
                 27 1/2 x 41 3/8 x 1 3/4 in. 70 cm{" "}
-                <span className="font-semibold">More Info...</span>
+                <span className="font-semibold cursor-pointer">More Info...</span>
               </p>
               <p className="font-light mt-2">GHS 200.00</p>
             </div>
@@ -75,7 +75,7 @@ const ProductModal = ({ closeModal }: any) => {
                 metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
                 interdum tellus elit sed risus. Maecenas eget condimentum velit,
                 sit amet feugiat lectus.{" "}
-                <span className="font-semibold">More Info...</span>
+                <span className="font-semibold cursor-pointer">More Info...</span>
               </p>
             </div>
             <div className="hidden md:block ">
