@@ -1,6 +1,7 @@
 import { client } from "../../../sanity/lib/client"
 import Gallery from "../components/Gallery"
 import { groq } from "next-sanity"
+import Header from "../components/Header"
 
 const query = groq`
 *[_type=='art'] {
@@ -12,7 +13,13 @@ const query = groq`
 export default async function Home() {
   const arts = await client.fetch(query)
 
-  return <Gallery arts={arts} />
+  return (
+    <div>
+      <Header />
+      <Gallery arts={arts} />
+      <Gallery arts={arts} />
+    </div>
+  )
   {
   }
 }

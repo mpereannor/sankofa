@@ -1,6 +1,6 @@
 import * as React from "react"
 import { motion } from "framer-motion"
-import { headerVariants } from "@/lib/animation"
+import { headerVariants, ulVariant } from "@/lib/animation"
 import { Instagram, Search } from "./Icons"
 const Path = (props: any) => (
   <motion.path
@@ -53,16 +53,10 @@ const variants = {
 
 export const Navigation = ({openModal}:any) => (
   <motion.ul
-  className="absolute top-12 w-full m-0"
-    variants={variants}
-    // style={{
-    //   position: "absolute",
-    //   top: "50px",
-    //   width: "100%",
-    //   margin: 0,
-    // }}
+  // className="absolute  bg-blue-500 right-0 bottom-0 left-0 top-10 w-full m-0 h-full "
+    variants={ulVariant}
   >
-    <MenuItem openModal={openModal} />
+    <MenuItem openModal={openModal}  />
   </motion.ul>
 )
 
@@ -83,10 +77,10 @@ const menuItemVariants = {
   },
 }
 
-const MenuItem = ({openModal}:any) => {
+export const MenuItem = ({openModal}:any) => {
   return (
     <motion.div
-      className={`flex mt-2 p-10 gap-10 w-screen flex-col items-center h-screen`}
+      className={`flex mt-2 p-10 gap-10 w-screen flex-col items-center h-screen `}
       variants={menuItemVariants}
     >
       <motion.div

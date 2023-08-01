@@ -1,12 +1,11 @@
-import '../../app/globals.css'
-import { Inter } from 'next/font/google'
-import Header from '../components/Header'
+import "../../app/globals.css"
+import { Inter } from "next/font/google"
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: 'Sankofa Art Studio',
-  description: 'Sankofa Art Studio',
+  title: "Sankofa Art Studio",
+  description: "Sankofa Art Studio",
 }
 
 export default function RootLayout({
@@ -17,10 +16,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <Header/>
-       {/* <Banner/> */}
         {children}
-        </body>
+      </body>
     </html>
   )
 }
