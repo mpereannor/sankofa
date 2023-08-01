@@ -5,14 +5,16 @@ import Image from "next/image"
 import adobya from "../../../assets/adobya.svg"
 import { Close, Instagram, Menu, Search } from "./Icons"
 import { AnimatePresence, motion } from "framer-motion"
-import {
-  headerVariants,
- 
-} from "../../lib/animation"
+import { headerVariants } from "../../lib/animation"
 import SearchBarModal from "./elements/SearchBarModal"
 import { MenuItem } from "./Menu"
+import { useScrollPosition } from "@/lib/hooks/usePosition"
 
 function Header() {
+  function classNames(...classes: any[]) {
+    return classes.filter(Boolean).join(" ")
+  }
+  const scrollPosition = useScrollPosition()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isClosed, setIsClosed] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -46,7 +48,12 @@ function Header() {
         {isModalOpen && <SearchBarModal closeModal={closeModal} />}
       </AnimatePresence>
 
-      <motion.header className="sticky top-0 left-0 right-0 z-10 flex items-center justify-between space-x-2  px-10 py-5  max-h-screen">
+      <motion.header
+        className={classNames(
+          scrollPosition > 0 ? "bg-black opacity-80" : "bg-transparent",
+          "  sticky top-0 left-0 right-0 z-10 flex items-center justify-between space-x-2  px-10 py-5  max-h-screen"
+        )}
+      >
         <motion.div className="flex  items-center flex-no-shrink">
           <Link href="/">
             <Image src={adobya} width={100} height={50} alt="logo" />

@@ -75,50 +75,5 @@ export const mobileMenuVariant = {
   }
 }
 
-export const fadeInVariant = {
-  opened: {
-    opacity: 1,
-    transition: {
-      delay: 1.2
-    }
-  },
-  closed: { opacity: 0 }
-}
 
-export const ulVariant = {
-  opened: {
-    transition: {
-      delayChildren: 1,
-      staggerChildren: 0.18
-    }
-  },
-  closed: {
-    transition: {
-      staggerChildren: 0.06,
-      staggerDirection: -1
-    }
-  }
-}
 
-export const liVariant = {
-  opened: {
-    opacity: 1,
-    y: "0%",
-    transition: {
-      duration: 0.65,
-      ease: "easeOut"
-    }
-  },
-  closed: {
-    opacity: 0,
-    y: "100%",
-    transition: {
-      duration: 0.25,
-      ease: "easeInOut"
-    }
-  }
-}
-
-export const fadeInStart = { opacity: 0 }
-export const fadeInEnd = { opacity: 1 }
-export const fadeInTransition = { duration: 1 }
