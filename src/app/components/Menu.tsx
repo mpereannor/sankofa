@@ -80,7 +80,7 @@ const menuItemVariants = {
 export const MenuItem = ({openModal}:any) => {
   return (
     <motion.div
-      className={`flex mt-2 p-10 gap-10 w-screen flex-col items-center h-screen `}
+      className={`flex mt-2 p-10 gap-20 w-screen flex-col items-center h-screen justify-center `}
       variants={menuItemVariants}
     >
       <motion.div

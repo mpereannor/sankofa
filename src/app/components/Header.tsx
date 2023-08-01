@@ -4,14 +4,10 @@ import Link from "next/link"
 import Image from "next/image"
 import adobya from "../../../assets/adobya.svg"
 import { Close, Instagram, Menu, Search } from "./Icons"
-import { AnimatePresence, motion, useCycle } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import {
-  fadeInVariant,
   headerVariants,
-  hideNavItemsVariant,
-  menuVariants,
-  mobileMenuVariant,
-  sidebarVariants,
+ 
 } from "../../lib/animation"
 import SearchBarModal from "./elements/SearchBarModal"
 import { MenuItem } from "./Menu"
@@ -25,7 +21,7 @@ function Header() {
   // mobile nav style
   const isHiddenStyle = "hidden"
   const isVisibleStyle =
-    "block lg:hidden absolute space-y-10 bg-transparent w-full p-6 left-0 opacity-90  bg-gradient-to-tl from-slate-800 via-black to-black right-0 top-0 max-h-screen text-black overflow-y-hidden"
+    "block lg:hidden absolute space-y-10 bg-transparent w-full  left-0 opacity-90  bg-gradient-to-tl from-slate-800 via-black to-black right-0 top-0 max-h-screen text-black overflow-y-hidden"
 
   /* Framer Motion animation properties for the children of the parent motion container */
 
