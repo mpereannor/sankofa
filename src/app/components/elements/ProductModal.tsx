@@ -1,8 +1,10 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Close } from "../Icons"
+import analyze from "rgbaster"
 
 const ind = [1, 2, 3, 4, 5, 6]
+
 const ProductModal = ({ closeModal }: any) => {
   return (
     <>
@@ -99,7 +101,6 @@ const ProductModal = ({ closeModal }: any) => {
                 ))}
               </div>
             </div>
-            {/* <p className="font-semibold">View More...</p> */}
           </div>
         </div>
       </motion.div>
