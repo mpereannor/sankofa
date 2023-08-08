@@ -1,4 +1,3 @@
-import { motion } from "framer-motion"
 import { Close } from "../Icons"
 
 type SearchInputProps = {
@@ -7,7 +6,7 @@ type SearchInputProps = {
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
   inputRef: React.RefObject<HTMLInputElement>
   placeholder?: string
-  closeModal:any
+  closeModal: any
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({
@@ -16,7 +15,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   onKeyDown,
   inputRef,
   placeholder = "Search products",
-  closeModal
+  closeModal,
 }) => {
   return (
     <div className="flex justify-between items-center px-2">
@@ -32,7 +31,11 @@ const SearchInput: React.FC<SearchInputProps> = ({
         ref={inputRef}
         placeholder={placeholder}
       />
-      <Close onClick={closeModal} className="p-1  bg-black rounded-full"  size={18}/>
+      <Close
+        onClick={closeModal}
+        className="p-1  bg-black rounded-full"
+        size={18}
+      />
     </div>
   )
 }

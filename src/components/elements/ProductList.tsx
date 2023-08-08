@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 
- 
 type Product = {
   id: number
   title: string
@@ -8,9 +7,9 @@ type Product = {
 }
 
 type ProductListProps = {
-  products: Product[]
+  products: Art[]
   selectedProductIndex: number
-  handleProductClick: (product: Product) => void
+  handleProductClick: (product: Art) => void
 }
 
 const ProductList: React.FC<ProductListProps> = ({
@@ -22,19 +21,24 @@ const ProductList: React.FC<ProductListProps> = ({
     <div
       className="bg-zinc-800	
       max-h-96 overflow-y-scroll resultProductContainer rounded-b-xl"
-     
     >
       {products.map((product, index) => (
         <div
-          key={product.id}
+          key={product._id}
           id={`product-${index}`}
-          className={`py-2 px-4 flex items-center justify-between gap-8 hover:bg-black cursor-pointer ${
-            selectedProductIndex === index ? "bg-gray-200 " : ""
-          }`}
+          className={`py-2 px-4 flex items-center justify-between gap-8 hover:bg-black cursor-pointer 
+          ${
+            selectedProductIndex === index
+             ?
+            "bg-gray-200 "
+             :
+             ""
+          }
+          `}
           onClick={() => handleProductClick(product)}
         >
           <p className="font-medium">{product.title}</p>
-          <img src={product.image} alt="" className=" w-8" />
+          {/* <img src={product.image} alt="" className=" w-8" /> */}
         </div>
       ))}
     </div>

@@ -1,30 +1,30 @@
+"use client"
 import { motion } from "framer-motion"
-import { HTMLProps, useEffect, useRef, useState } from "react"
+import {  useEffect, useRef, useState } from "react"
 import SearchInput from "./SearchInput"
 import ProductList from "./ProductList"
-import axios from "axios"
-type Product = {
-  id: number
-  title: string
-  image: string
-}
+import { artsQuery } from "@/lib/queries"
+import { client } from "../../../sanity/lib/client"
+
+
 
 const SearchBarModal = ({ closeModal }: any) => {
   const [query, setQuery] = useState("")
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<Art[]>([])
   const [selectedProductIndex, setSelectedProductIndex] = useState<number>(-1)
-  const [searchResults, setSearchResults] = useState<Product[]>([])
+  const [searchResults, setSearchResults] = useState<Art[]>([])
   const inputRef = useRef<HTMLInputElement>(null)
-
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await axios.get("https://fakestoreapi.com/products")
-      setProducts(data)
+      const artsData = await client.fetch(artsQuery)
+      setProducts(artsData)
     }
 
     fetchProducts()
   }, [])
+
+ 
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
@@ -36,8 +36,8 @@ const SearchBarModal = ({ closeModal }: any) => {
     )
   }
 
-  const handleProductClick = (product: Product) => {
-    alert(`You selected ${product.title}`)
+  const handleProductClick = (product: Art) => {
+  //   alert(`You selected ${product.title}`)
     setQuery("")
     setSelectedProductIndex(-1)
   }
@@ -79,6 +79,8 @@ const SearchBarModal = ({ closeModal }: any) => {
     }
   }
 
+
+
   return (
     <>
       <motion.div
@@ -102,7 +104,8 @@ const SearchBarModal = ({ closeModal }: any) => {
             duration: 0.2,
           },
         }}
-        className=" flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none flex-col w-5/6 md:w-full md:max-w-xl max-w-xs h-fit mt-20 mx-auto  rounded-xl" style={{backgroundColor: "#F4F2F2"}}
+        className=" flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none flex-col w-5/6 md:w-full md:max-w-xl max-w-xs h-fit mt-20 mx-auto  rounded-xl"
+        style={{ backgroundColor: "#F4F2F2" }}
       >
         <SearchInput
           value={query}
@@ -118,10 +121,13 @@ const SearchBarModal = ({ closeModal }: any) => {
             selectedProductIndex={selectedProductIndex}
             handleProductClick={handleProductClick}
           />
-        )}
+    )} 
         {/* </div> */}
       </motion.div>
-      <div onClick={closeModal}className="opacity-80 fixed inset-0 z-40 bg-black "></div>
+      <div
+        onClick={closeModal}
+        className="opacity-80 fixed inset-0 z-40 bg-black "
+      ></div>
     </>
   )
 }
