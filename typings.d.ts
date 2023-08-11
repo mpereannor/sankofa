@@ -7,7 +7,7 @@ type Base = {
 }
 
 interface Art extends Base {
-  artist: ArrayOfObjectsItemMember
+  artist: Artist
   body: Block[]
   categories: Category[]
   mainImage: Image
@@ -67,3 +67,21 @@ interface Title {
   _type: "string"
   current: string
 }
+
+// type ItemKey = "cart" | "wishlist" | "checkout"
+// interface IState {
+//   cart: Item[]
+//   wishlist: Item[]
+//   checkout: Item[]
+// }
+// interface Item extends Art {
+//   count: number
+// }
+// interface IContext  {
+//   state: IState
+//   addItem: (key: ItemKey, product: Art, count?: number) => void
+//   removeItem: (key: ItemKey, productId: string) => void
+//   increaseCount: (key: ItemKey, productId: string) => void
+//   decreaseCount: (key: ItemKey, productId: string) => void
+//   resetItems: (key: ItemKey) => void
+// }

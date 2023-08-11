@@ -1,8 +1,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { headerVariants, menuVariants } from "@/lib/animation"
-import { Instagram, Search } from "./Icons"
-
+import { Cart, Instagram, Search } from "./Icons"
 
 export const Navigation = ({ openModal }: any) => (
   <motion.ul variants={menuVariants}>
@@ -56,6 +55,13 @@ export const MenuItem = ({ openModal }: any) => {
       >
         SHOP
       </motion.button>
+      <motion.div
+        variants={headerVariants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Cart size={24} />
+      </motion.div>
     </motion.div>
   )
 }

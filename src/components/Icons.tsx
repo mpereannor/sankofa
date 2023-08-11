@@ -78,3 +78,25 @@ clipRule="evenodd"
 </svg>
 );
 
+
+export const Cart = ({ size = 21, strokeWidth = 1, color = "#ffffff", ...props }) => (
+<svg
+width={size}
+height={size}
+fill="none"
+stroke={color}
+strokeLinecap="round"
+strokeLinejoin="round"
+strokeWidth={strokeWidth}
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"
+{...props}
+>
+<path d="M15.586 17.586a2 2 0 1 1 2.828 2.828 2 2 0 0 1-2.828-2.828Z" />
+<path d="M8.414 20.414a2 2 0 1 0-2.828-2.828 2 2 0 0 0 2.828 2.828Z" />
+<path d="m7 13-2.293 2.293c-.63.63-.184 1.707.707 1.707H17" />
+<path d="M5.4 5H21l-4 8H7L5.4 5Z" />
+<path d="M3 3h2l.4 2" />
+</svg>
+);
+

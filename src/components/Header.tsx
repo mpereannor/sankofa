@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import adobya from "../../assets/adobya.svg"
-import { Close, Instagram, Menu, Search } from "./Icons"
+import { Cart, Close, Instagram, Menu, Search } from "./Icons"
 import { AnimatePresence, motion } from "framer-motion"
 import { headerVariants } from "../lib/animation"
 import SearchBarModal from "./elements/SearchBarModal"
@@ -62,7 +62,7 @@ function Header() {
         <motion.div
           initial={false}
           animate={isOpen ? "open" : "closed"}
-          className={`hidden lg:flex  w-60 justify-between items-center`}
+          className={`hidden lg:flex  w-80 justify-between items-center`}
         >
           <motion.button
             variants={headerVariants}
@@ -86,6 +86,13 @@ function Header() {
             whileTap={{ scale: 0.95 }}
           >
             <Search onClick={openModal} style={{ cursor: "pointer" }} />
+          </motion.div>
+          <motion.div
+            variants={headerVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Cart size={24} />
           </motion.div>
         </motion.div>
         <motion.div
