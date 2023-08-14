@@ -3,12 +3,13 @@ import React, { useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import adobya from "../../assets/adobya.svg"
-import { Cart, Close, Instagram, Menu, Search } from "./Icons"
-import { AnimatePresence, motion } from "framer-motion"
+import { Close, Instagram, Menu, Search, Shopping_Cart } from "./Icons"
+import { AnimatePresence, Cycle, motion, useCycle } from "framer-motion"
 import { headerVariants } from "../lib/animation"
 import SearchBarModal from "./elements/SearchBarModal"
 import { MenuItem } from "./Menu"
 import { useScrollPosition } from "@/lib/hooks/usePosition"
+import Cart from "./Cart"
 
 function Header() {
   function classNames(...classes: any[]) {
@@ -19,6 +20,7 @@ function Header() {
   const [isClosed, setIsClosed] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isHidden, setIsHidden] = useState(true)
+  const [open, cycleOpen] = useCycle(false, true)
 
   // mobile nav style
   const isHiddenStyle = "hidden"
@@ -87,12 +89,10 @@ function Header() {
           >
             <Search onClick={openModal} style={{ cursor: "pointer" }} />
           </motion.div>
-          <motion.div
-            variants={headerVariants}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Cart size={24} />
+          <motion.div>
+            <div onClick={cycleOpen}>
+              {open ? <Close /> : <Shopping_Cart size={28} />}
+            </div>
           </motion.div>
         </motion.div>
         <motion.div
@@ -144,6 +144,7 @@ function Header() {
           <MenuItem openModal={openModal} />
         </motion.ul>
       </motion.header>
+      <Cart cartOpen={open} />
     </>
   )
 }

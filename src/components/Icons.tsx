@@ -79,7 +79,7 @@ clipRule="evenodd"
 );
 
 
-export const Cart = ({ size = 21, strokeWidth = 1, color = "#ffffff", ...props }) => (
+export const Shopping_Cart = ({ size = 21, strokeWidth = 1, color = "#ffffff", ...props }) => (
 <svg
 width={size}
 height={size}

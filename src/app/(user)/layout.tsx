@@ -18,7 +18,9 @@ export default function RootLayout({
         <link rel="icon" type="image/jpg" sizes="32x32" href="sankofa.jpg" />
       </head>
       <body className={inter.className}>
-        <AppContextProvider>{children}</AppContextProvider>
+        <AppContextProvider>
+          {children}
+          </AppContextProvider>
       </body>
     </html>
   )
