@@ -27,9 +27,6 @@ function Header() {
   const isVisibleStyle =
     "block lg:hidden absolute space-y-10 bg-transparent w-full  left-0 opacity-90  bg-gradient-to-tl from-slate-800 via-black to-black right-0 top-0 max-h-screen text-black overflow-y-hidden"
 
-  /* Framer Motion animation properties for the children of the parent motion container */
-
-
   const openModal = () => {
     setIsModalOpen(true)
   }
@@ -37,6 +34,9 @@ function Header() {
     setIsModalOpen(false)
   }
 
+  const handleToggle = () => { 
+    cycleOpen()
+  }
   return (
     <>
       <AnimatePresence>
@@ -83,7 +83,7 @@ function Header() {
             <Search onClick={openModal} style={{ cursor: "pointer" }} />
           </motion.div>
           <motion.div>
-            <div onClick={cycleOpen}>
+            <div onClick={handleToggle}>
               {open ? <Close /> : <Shopping_Cart size={28} />}
             </div>
           </motion.div>
