@@ -3,7 +3,6 @@ import { client } from "../../../sanity/lib/client"
 import { artsQuery } from "@/lib/queries"
 import Gallery from "@/components/Gallery"
 import Cart from "@/components/Cart"
-import { useCycle } from "framer-motion"
 
 export default async function Home() {
 
@@ -14,7 +13,6 @@ export default async function Home() {
       <Header  />
       <Gallery arts={arts} />
       <Gallery arts={arts} />
-      <Cart  />
     </div>
   )
  

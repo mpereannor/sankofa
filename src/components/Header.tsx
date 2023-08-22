@@ -29,14 +29,7 @@ function Header() {
 
   /* Framer Motion animation properties for the children of the parent motion container */
 
-  const itemVariants = {
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 500, damping: 24 },
-    },
-    closed: { opacity: 0, y: -120, transition: { duration: 0.2 } },
-  }
+
   const openModal = () => {
     setIsModalOpen(true)
   }
