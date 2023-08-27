@@ -2,13 +2,20 @@ export type ItemKey = "cart" | "wishlist" | "checkout"
 
 export interface IProduct {
   id: string
-  title: string
+  name: string
   description: string
   price: number
   slug: string
   mainImage: string
   category: ICategory
   gallery: string[]
+}
+
+export interface IProductImg{ 
+    id: string
+    slug: string
+    mainImage: string
+    name: string
 }
 export interface ICategory {
   id: string
