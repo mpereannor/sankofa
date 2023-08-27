@@ -28,7 +28,7 @@ export const getAllProductsMainImgQuery = groq`
   "mainImage": mainImage.asset->url
 }`
 
-export const categoryQuery = groq`
+export const getAllCategories = groq`
 *[_type == 'category']{
   "id": _id,
   title,

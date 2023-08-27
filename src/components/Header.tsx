@@ -34,7 +34,7 @@ function Header() {
     setIsModalOpen(false)
   }
 
-  const handleToggle = () => { 
+  const handleToggle = () => {
     cycleOpen()
   }
   return (
@@ -66,7 +66,7 @@ function Header() {
             type="button"
             className="bg-transparent text-white hover:bg-white hover:text-black py-1 px-6 border border-white font-light hover:border-transparent "
           >
-            SHOP
+            <Link href="/shop">SHOP</Link>
           </motion.button>
           <motion.div
             variants={headerVariants}

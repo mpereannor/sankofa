@@ -19,7 +19,7 @@ export interface IProductImg{
 }
 export interface ICategory {
   id: string
-  name: string
+  title: string
   image: string
   slug: string
 }
