@@ -1,8 +1,11 @@
 "use client"
 
 import Image from "next/image"
-import { IProduct } from "@/lib/model"
+import { ICategory, IProduct } from "@/lib/model"
 import Link from "next/link"
+import { groq } from "next-sanity"
+import { client } from "../../sanity/lib/client"
+import category from "../../schemas/category"
 
 type GalleryProps = {
   products: IProduct[]
@@ -38,3 +41,4 @@ async function Gallery({ products }: GalleryProps) {
 }
 
 export default Gallery
+

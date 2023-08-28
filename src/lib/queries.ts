@@ -35,6 +35,15 @@ export const getAllCategories = groq`
   "image": image.asset->url
 }`
 
+export const getAllProductsByCategory = groq`
+ *[_type == "product" && references($id)] {
+        ...,
+        "id": _id,
+        "slug": slug.current,
+        "mainImage": mainImage.asset->url,
+        category->{ title, "image": image.asset->url  },
+    }
+`
 export const getProductDetail = groq`
    *[_type == "product" && slug.current == $slug][0] {
       ...,

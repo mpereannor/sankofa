@@ -37,7 +37,6 @@ const SearchBarModal = ({ closeModal }: any) => {
   }
 
   const handleProductClick = (product: Art) => {
-  //   alert(`You selected ${product.title}`)
     setQuery("")
     setSelectedProductIndex(-1)
   }

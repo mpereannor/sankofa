@@ -18,7 +18,7 @@ async function Gallery({ categories }: CategoryProps) {
     mb-[20px] "
         >
           {categories.map((category) => (
-            <Link href={`/products/${category.slug}`} key={category.id}>
+            <Link href={`/shop/${category.id}`} key={category.id}>
               <div className="rounded-xl  w-[300px] h-[200px] hover:scale-95 transition-transform duration-500 ease-in relative overflow-hidden">
                 <Image
                   src={category.image}
@@ -28,8 +28,10 @@ async function Gallery({ categories }: CategoryProps) {
                   style={{ borderRadius: "15px", objectFit: "cover" }}
                   className="w-full h-auto  hover:scale-150 transition-transform duration-500 ease-out"
                 />
-                <div className=" w-full bg-black/[.50]	 absolute bottom-0 right-0 flex justify-end">
-                  <p className="text-white font-regular  p-4 align-right opacity-100">{category.title}</p>
+                <div className=" w-full bg-black/[.50]	 absolute bottom-0 right-0 flex justify-end ">
+                  <p className="text-white font-regular  p-4 align-right opacity-100">
+                    {category.title}
+                  </p>
                 </div>
               </div>
             </Link>
