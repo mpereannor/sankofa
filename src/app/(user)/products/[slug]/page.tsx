@@ -56,14 +56,14 @@ const ProductModalPage = async (props: any) => {
                   className="rounded-2xl bg-black p-1.5"
                 />
               </div>
+             
+              <div className=" w-full h-[70%] md:h-full relative md:w-[50%] lg:w-[60%] ">
               <div className=" z-10 absolute top-0 left-0 mx-4 my-2 opacity-50 hover:opacity-100">
                 <Heart
-                  // onClick={closeModal}
                   size={30}
                   className="rounded-2xl bg-black p-1.5"
                 />
               </div>
-              <div className=" w-full h-[70%] md:h-full relative md:w-[50%] lg:w-[60%] ">
                 <Image
                   src={product.mainImage}
                   alt={product.name}

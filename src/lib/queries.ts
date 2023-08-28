@@ -58,3 +58,19 @@ export const getProductDetail = groq`
         "gallery": gallery[].asset->url
     }
 `
+
+export const getAllProductsBySearch = groq `
+    *[_type == "product" && (name match $searchText || description match $searchText) ] {
+      ...,
+      "id": _id,
+      "slug": slug.current,
+        "mainImage": mainImage.asset->url,
+        category->{
+            title,
+            "id": _id,
+            "image": image.asset->url
+        },
+        "gallery": gallery[].asset->url
+    }
+`
+

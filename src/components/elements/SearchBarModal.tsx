@@ -1,44 +1,53 @@
 "use client"
 import { motion } from "framer-motion"
-import {  useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import SearchInput from "./SearchInput"
 import ProductList from "./ProductList"
-import { artsQuery } from "@/lib/queries"
+import { artsQuery, getAllProductsBySearch } from "@/lib/queries"
 import { client } from "../../../sanity/lib/client"
-
-
+import { IProduct } from "@/lib/model"
 
 const SearchBarModal = ({ closeModal }: any) => {
   const [query, setQuery] = useState("")
-  const [products, setProducts] = useState<Art[]>([])
-  const [selectedProductIndex, setSelectedProductIndex] = useState<number>(-1)
-  const [searchResults, setSearchResults] = useState<Art[]>([])
+  const [searchText, setSearchText] = useState("")
+  const [products, setProducts] = useState<IProduct[]>([])
+  // const [selectedProductIndex, setSelectedProductIndex] = useState<number>(-1)
+  // const [searchResults, setSearchResults] = useState<IProduct[]>([])
+  const [isLoading, setIsLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const fetchProducts = async () => {
+    setIsLoading(true)
+    const products: IProduct[] = await client.fetch(getAllProductsBySearch, {
+      searchText: `*${searchText}*`,
+    })
+    console.log("productsssm", products)
 
+    setProducts(products)
+    setIsLoading(false)
+  }
   useEffect(() => {
-    const fetchProducts = async () => {
-      const artsData = await client.fetch(artsQuery)
-      setProducts(artsData)
-    }
+    const timeout = setTimeout(() => {
+      if (searchText.trim().length >= 3) {
+        fetchProducts()
+      }
+    }, 1000)
 
-    fetchProducts()
-  }, [])
-
- 
+    return () => clearTimeout(timeout)
+  }, [searchText])
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
-    setSelectedProductIndex(-1)
-    setSearchResults(
-      products.filter((product) =>
-        product.title.toLowerCase().includes(event.target.value.toLowerCase())
-      )
-    )
+    setSearchText(event.target.value)
+    // setSelectedProductIndex(-1)
+    // setSearchResults(
+    //   products.filter((product) =>
+    //     product.name.toLowerCase().includes(event.target.value.toLowerCase())
+    //   )
+    // )
   }
 
-  const handleProductClick = (product: Art) => {
-    setQuery("")
-    setSelectedProductIndex(-1)
+  const handleProductClick = (product: IProduct) => {
+    setSearchText("")
+    // setSelectedProductIndex(-1)
   }
 
   const scrollActiveProductIntoView = (index: number) => {
@@ -52,33 +61,31 @@ const SearchBarModal = ({ closeModal }: any) => {
     }
   }
 
-  useEffect(() => {
-    if (selectedProductIndex !== -1) {
-      scrollActiveProductIntoView(selectedProductIndex)
-    }
-  }, [selectedProductIndex])
+  // useEffect(() => {
+  //   if (selectedProductIndex !== -1) {
+  //     scrollActiveProductIntoView(selectedProductIndex)
+  //   }
+  // }, [selectedProductIndex])
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "ArrowUp") {
-      setSelectedProductIndex((prevIndex) =>
-        prevIndex === -1 ? searchResults.length - 1 : prevIndex - 1
-      )
-    } else if (event.key === "ArrowDown") {
-      setSelectedProductIndex((prevIndex) =>
-        prevIndex === searchResults.length - 1 ? -1 : prevIndex + 1
-      )
-    } else if (event.key === "Enter") {
-      if (selectedProductIndex !== -1) {
-        const selectedProduct = searchResults[selectedProductIndex]
-        alert(`You selected ${selectedProduct.title}`)
-        setQuery("")
-        setSelectedProductIndex(-1)
-        setSearchResults([])
-      }
-    }
-  }
-
-
+  // const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (event.key === "ArrowUp") {
+  //     setSelectedProductIndex((prevIndex) =>
+  //       prevIndex === -1 ? searchResults.length - 1 : prevIndex - 1
+  //     )
+  //   } else if (event.key === "ArrowDown") {
+  //     setSelectedProductIndex((prevIndex) =>
+  //       prevIndex === searchResults.length - 1 ? -1 : prevIndex + 1
+  //     )
+  //   } else if (event.key === "Enter") {
+  //     if (selectedProductIndex !== -1) {
+  //       const selectedProduct = searchResults[selectedProductIndex]
+  //       alert(`You selected ${selectedProduct.name}`)
+  //       setSearchText("")
+  //       setSelectedProductIndex(-1)
+  //       setSearchResults([])
+  //     }
+  //   }
+  // }
 
   return (
     <>
@@ -107,20 +114,26 @@ const SearchBarModal = ({ closeModal }: any) => {
         style={{ backgroundColor: "#F4F2F2" }}
       >
         <SearchInput
-          value={query}
+          value={searchText}
           onChange={handleQueryChange}
-          onKeyDown={handleKeyDown}
+          // onKeyDown={handleKeyDown}
           inputRef={inputRef}
           placeholder="Search Artwork"
           closeModal={closeModal}
         />
-        {query !== "" && searchResults.length > 0 && (
+        {searchText !== "" && 
+        products.length > 0 &&
+        // searchResults.length > 0 
+        // && 
+        (
           <ProductList
-            products={searchResults}
-            selectedProductIndex={selectedProductIndex}
-            handleProductClick={handleProductClick}
+          isLoading={isLoading}
+            // products={searchResults}
+            products={products}
+            // selectedProductIndex={selectedProductIndex}
+            // handleProductClick={handleProductClick}
           />
-    )} 
+        )}
         {/* </div> */}
       </motion.div>
       <div
