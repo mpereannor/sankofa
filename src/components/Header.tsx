@@ -45,8 +45,8 @@ function Header() {
 
       <motion.header
         className={classNames(
-          scrollPosition > 0 ? "bg-black opacity-80" : "bg-transparent",
-          "  sticky top-0 left-0 right-0 z-10 flex items-center justify-between space-x-2  px-10 py-5  max-h-screen"
+          scrollPosition > 0 ? "bg-black opacity-80 sticky" : "bg-transparent",
+          "  fixed top-0 left-0 right-0 z-10 flex items-center justify-between space-x-2  px-10 py-5  max-h-screen"
         )}
       >
         <motion.div className="flex  items-center flex-no-shrink">
@@ -57,21 +57,31 @@ function Header() {
         <motion.div
           initial={false}
           animate={isOpen ? "open" : "closed"}
-          className={`hidden lg:flex  w-80 justify-between items-center`}
+          className={`hidden lg:flex  w-80 justify-evenly items-center `}
         >
           <motion.button
             variants={headerVariants}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             type="button"
-            className="bg-transparent text-white hover:bg-white hover:text-black py-1 px-6 border border-white font-light hover:border-transparent "
+            className="bg-transparent text-white py-1 px-6  font-light hover:border-transparent "
           >
-            <Link href="/shop">SHOP</Link>
+            <Link href="/products">Gallery</Link>
+          </motion.button>
+          <motion.button
+            variants={headerVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            type="button"
+            className="bg-transparent text-white py-1 px-6  font-light hover:border-transparent "
+          >
+            <Link href="/shop">Shop</Link>
           </motion.button>
           <motion.div
             variants={headerVariants}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            className="py-1 px-6"
           >
             <Instagram />
           </motion.div>
@@ -79,10 +89,16 @@ function Header() {
             variants={headerVariants}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            className="py-1 px-6"
           >
             <Search onClick={openModal} style={{ cursor: "pointer" }} />
           </motion.div>
-          <motion.div>
+          <motion.div
+            variants={headerVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="py-1 px-6"
+          >
             <div onClick={handleToggle}>
               {open ? <Close /> : <Shopping_Cart size={28} />}
             </div>
