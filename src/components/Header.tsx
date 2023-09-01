@@ -11,7 +11,7 @@ import { MenuItem } from "./Menu"
 import { useScrollPosition } from "@/lib/hooks/usePosition"
 import Cart from "./Cart"
 
-function Header({ variant }: { variant: string }) {
+function Header({ variant }: { variant?: string }) {
   function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(" ")
   }
