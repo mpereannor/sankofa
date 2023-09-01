@@ -2,6 +2,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { headerVariants, menuVariants } from "@/lib/animation"
 import { Instagram, Search, Shopping_Cart } from "./Icons"
+import Link from "next/link"
 
 export const Navigation = ({ openModal }: any) => (
   <motion.ul variants={menuVariants}>
@@ -51,16 +52,28 @@ export const MenuItem = ({ openModal }: any) => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         type="button"
-        className="bg-transparent text-white hover:bg-white hover:text-black py-1 px-6 border border-white font-light hover:border-transparent "
+        className="bg-transparent text-white py-1 px-6  font-light hover:border-transparent "
       >
-        SHOP
+        <Link href="/products">Gallery</Link>
+      </motion.button>
+
+      <motion.button
+        variants={headerVariants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        type="button"
+        className="bg-transparent text-white py-1 px-6  font-light hover:border-transparent "
+      >
+        <Link href="/shop">Shop</Link>
       </motion.button>
       <motion.div
         variants={headerVariants}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
-        <Shopping_Cart size={24} />
+        {/* <div onClick={handleToggle}>
+          {open ? <Close /> : <Shopping_Cart size={28} />}
+        </div> */}
       </motion.div>
     </motion.div>
   )

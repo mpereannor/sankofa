@@ -1,17 +1,17 @@
 "use client"
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import adobya from "../../assets/adobya.svg"
 import { Close, Instagram, Menu, Search, Shopping_Cart } from "./Icons"
-import { AnimatePresence, Cycle, motion, useCycle } from "framer-motion"
+import { AnimatePresence, motion, useCycle } from "framer-motion"
 import { headerVariants } from "../lib/animation"
 import SearchBarModal from "./elements/SearchBarModal"
 import { MenuItem } from "./Menu"
 import { useScrollPosition } from "@/lib/hooks/usePosition"
 import Cart from "./Cart"
 
-function Header() {
+function Header({ variant }: { variant: string }) {
   function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(" ")
   }
@@ -46,7 +46,9 @@ function Header() {
       <motion.header
         className={classNames(
           scrollPosition > 0 ? "bg-black opacity-80 sticky" : "bg-transparent",
-          "  fixed top-0 left-0 right-0 z-10 flex items-center justify-between space-x-2  px-10 py-5  max-h-screen"
+          `  ${
+            variant === "main" ? `fixed` : `sticky`
+          } top-0 left-0 right-0 z-10 flex items-center justify-between space-x-2  px-10 py-5  max-h-screen`
         )}
       >
         <motion.div className="flex  items-center flex-no-shrink">
@@ -153,7 +155,7 @@ function Header() {
           <MenuItem openModal={openModal} />
         </motion.ul>
       </motion.header>
-      <Cart cartOpen={open} />
+      <Cart cartOpen={open} handleToggle={handleToggle} />
     </>
   )
 }

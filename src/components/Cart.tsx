@@ -1,10 +1,15 @@
 "use client"
 import { AnimatePresence, motion } from "framer-motion"
+import Link from "next/link"
+import { Close } from "./Icons"
 
-function Cart({ cartOpen }: { cartOpen: boolean }) {
-
-
-
+function Cart({
+  cartOpen,
+  handleToggle,
+}: {
+  cartOpen: boolean
+  handleToggle: () => void
+}) {
   return (
     <>
       <AnimatePresence>
@@ -13,11 +18,18 @@ function Cart({ cartOpen }: { cartOpen: boolean }) {
             className=" fixed top-20 bottom-0 bg-white  right-0 h-fit z-[999]"
             initial={{ width: 0 }}
             animate={{
-              width: 600,
+              width: "40%",
             }}
-            exit={{ width: 0, transition: { delay: 0.7, duration: 0.3 } }}
+            exit={{ width: 0, transition: { delay: 0.5, duration: 0.3 } }}
           >
             <motion.div initial="closed" animate="open" exit="closed">
+              <div className=" z-10 absolute top-0 left-0 m-1 opacity-50 hover:opacity-100">
+                <Close
+                  onClick={handleToggle}
+                  size={25}
+                  className="rounded-2xl bg-black p-1.5"
+                />
+              </div>
               <div className="relative h-full mx-auto justify-between flex flex-col  m-4">
                 <div className="">
                   <div className="">
@@ -25,7 +37,7 @@ function Cart({ cartOpen }: { cartOpen: boolean }) {
                       <img
                         src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                         alt="product-image"
-                        className="w-full  w-20"
+                        className="  w-20"
                       />
                       <div className=" ml-4 flex w-full justify-between">
                         <div className="mt-5 mt-0">
@@ -79,7 +91,7 @@ function Cart({ cartOpen }: { cartOpen: boolean }) {
                       <img
                         src="https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1131&q=80"
                         alt="product-image"
-                        className="w-full w-20"
+                        className=" w-20"
                       />
                       <div className=" ml-4 flex w-full justify-between">
                         <div className="mt-5 mt-0">
@@ -138,7 +150,7 @@ function Cart({ cartOpen }: { cartOpen: boolean }) {
                       <p className="text-gray-700 font-light">GHS 300,800.00</p>
                     </div>
                     <div className="flex justify-between">
-                      <p className="text-gray-700">Shipping</p>
+                      <p className="text-gray-700">Shippng</p>
                       <p className="text-gray-700 font-light">GHS 200</p>
                     </div>
                     <hr className="my-4" />
@@ -150,12 +162,16 @@ function Cart({ cartOpen }: { cartOpen: boolean }) {
                     </div>
                   </div>
                   <div className="flex justify-around mt-8 ">
-                    <button className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">
-                      Checkout
-                    </button>
-                    <button className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">
-                      Continue Shipping
-                    </button>
+                    <Link href="/checkout">
+                      <button className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">
+                        Checkout
+                      </button>
+                    </Link>
+                    <Link href="/shop">
+                      <button className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">
+                        Continue Shopping
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -168,4 +184,3 @@ function Cart({ cartOpen }: { cartOpen: boolean }) {
 }
 
 export default Cart
-
