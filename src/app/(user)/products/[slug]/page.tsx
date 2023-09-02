@@ -10,6 +10,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 
+
 const ProductModalPage = async (props: any) => {
   const { slug } = props.params
 
@@ -65,9 +66,9 @@ const ProductModalPage = async (props: any) => {
                 />
               </div>
                 <Image
-                  src={product.mainImage}
-                  alt={product.name}
-                  sizes="100vw"
+                  src={product?.mainImage}
+                  alt={product?.name}
+                  sizes="33vw"
                   fill
                   style={{ objectFit: "cover" }}
                   className="w-full h-auto"
@@ -75,15 +76,15 @@ const ProductModalPage = async (props: any) => {
               </div>
               <div className="text-[#111111] bg-white w-full h-30%  md:h-full flex flex-col md:w-[50%]  lg:w-[40%] m-2 gap-3 md:gap-10 py-2 md:p-4 align-center justify-center md:justify-normal">
                 <div className="flex flex-col gap-1 text-center items-center md:items-start">
-                  <p className=" font-semibold">{product.name}</p>
+                  <p className=" font-semibold">{product?.name}</p>
 
                   <p className="font-thin text-sm">
-                    {product.description}
+                    {product?.description}
                     <span className="font-semibold cursor-pointer">
                       More Info...
                     </span>
                   </p>
-                  <p className="font-light mt-2">GHS {product.price}</p>
+                  <p className="font-light mt-2">GHS {product?.price}</p>
                 </div>
                 <div className="flex  justify-around md:flex-col lg:flex-row lg:justify-between md:gap-4  md:w-[80%] ">
                   <button className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">
@@ -99,14 +100,14 @@ const ProductModalPage = async (props: any) => {
                     className="grid  md:grid-cols-3 lg:grid-cols-4
               justify-items-center gap-y-4 gap-x-0 -m-2.5 overflow-x-hidden overflow-y-hidden"
                   >
-                    {product.gallery.map((imgs: string) => (
+                    {product?.gallery.map((imgs: string) => (
                       <div
                         key={imgs}
                         className="w-[90px] h-[90px] bg-black relative"
                       >
                         <Image
                           src={imgs}
-                          alt={product.name}
+                          alt={product?.name}
                           sizes="33vw"
                           fill
                           style={{ objectFit: "cover" }}

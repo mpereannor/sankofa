@@ -152,7 +152,11 @@ function Header({ variant }: { variant?: string }) {
           layout
           className={isHidden ? isHiddenStyle : isVisibleStyle}
         >
-          <MenuItem openModal={openModal} />
+          <MenuItem
+            openModal={openModal}
+            open={open}
+            handleToggle={handleToggle}
+          />
         </motion.ul>
       </motion.header>
       <Cart cartOpen={open} handleToggle={handleToggle} />

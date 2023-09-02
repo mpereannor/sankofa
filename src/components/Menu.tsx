@@ -1,7 +1,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { headerVariants, menuVariants } from "@/lib/animation"
-import { Instagram, Search, Shopping_Cart } from "./Icons"
+import { Close, Instagram, Search, Shopping_Cart } from "./Icons"
 import Link from "next/link"
 
 export const Navigation = ({ openModal }: any) => (
@@ -27,7 +27,7 @@ const menuItemVariants = {
   },
 }
 
-export const MenuItem = ({ openModal }: any) => {
+export const MenuItem = ({ openModal,handleToggle, open }: any) => {
   return (
     <motion.div
       className={`flex mt-20 p-10 gap-20 w-screen flex-col items-center h-screen  `}
@@ -71,9 +71,9 @@ export const MenuItem = ({ openModal }: any) => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
-        {/* <div onClick={handleToggle}>
+        <div onClick={handleToggle}>
           {open ? <Close /> : <Shopping_Cart size={28} />}
-        </div> */}
+        </div>
       </motion.div>
     </motion.div>
   )

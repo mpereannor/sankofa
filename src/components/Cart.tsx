@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 import { Close } from "./Icons"
+import { CSSProperties } from "react"
 
 function Cart({
   cartOpen,
@@ -15,10 +16,10 @@ function Cart({
       <AnimatePresence>
         {cartOpen && (
           <motion.aside
-            className=" fixed top-20 bottom-0 bg-white  right-0 h-fit z-[999]"
+            className=" fixed top-20 bottom-0 bg-white  right-0 h-fit z-[999] [--width:90%] lg:[--width:50%]"
             initial={{ width: 0 }}
             animate={{
-              width: "40%",
+              width: "var(--width)",
             }}
             exit={{ width: 0, transition: { delay: 0.5, duration: 0.3 } }}
           >
@@ -40,7 +41,7 @@ function Cart({
                         className="  w-20"
                       />
                       <div className=" ml-4 flex w-full justify-between">
-                        <div className="mt-5 mt-0">
+                        <div className="mt-5">
                           <h2 className="text-md font-semibold text-gray-900">
                             Nike Air Max 2019
                           </h2>
