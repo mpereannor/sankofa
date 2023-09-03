@@ -1,7 +1,8 @@
+import { Loading } from "@/components/loading/Loading"
 import { NextPage } from "next"
 
 const LoadingPage: NextPage = () => {
-  return <div>loading</div>
+  return <Loading />
 }
 
 export default LoadingPage
