@@ -2,14 +2,22 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import adobya from "../../assets/adobya.svg"
-import { Close, Instagram, Menu, Search, Shopping_Cart } from "./Icons"
+import {
+  Close,
+  CloseWishlist,
+  Heart,
+  Instagram,
+  Menu,
+  Search,
+  Shopping_Cart,
+} from "./Icons"
 import { AnimatePresence, motion, useCycle } from "framer-motion"
 import { headerVariants } from "../lib/animation"
 import SearchBarModal from "./elements/SearchBarModal"
 import { MenuItem } from "./Menu"
 import { useScrollPosition } from "@/lib/hooks/usePosition"
 import Cart from "./Cart"
+import Wishlist from "./Wishlist"
 
 function Header({ variant }: { variant?: string }) {
   function classNames(...classes: any[]) {
@@ -21,6 +29,7 @@ function Header({ variant }: { variant?: string }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isHidden, setIsHidden] = useState(true)
   const [open, cycleOpen] = useCycle(false, true)
+  const [wishlistOpen, wishlistCycleOpen] = useCycle(false, true)
 
   // mobile nav style
   const isHiddenStyle = "hidden"
@@ -36,6 +45,10 @@ function Header({ variant }: { variant?: string }) {
 
   const handleToggle = () => {
     cycleOpen()
+  }
+
+  const handleWishlistToggle = () => {
+    wishlistCycleOpen()
   }
   return (
     <>
@@ -53,13 +66,19 @@ function Header({ variant }: { variant?: string }) {
       >
         <motion.div className="flex  items-center flex-no-shrink">
           <Link href="/">
-            <Image src={adobya} width={100} height={50} alt="logo" />
+            <Image
+              priority
+              src={`/adobya.svg`}
+              width={100}
+              height={50}
+              alt="logo"
+            />
           </Link>
         </motion.div>
         <motion.div
           initial={false}
           animate={isOpen ? "open" : "closed"}
-          className={`hidden lg:flex  w-80 justify-evenly items-center `}
+          className={`hidden lg:flex  w-100 justify-evenly items-center `}
         >
           <motion.button
             variants={headerVariants}
@@ -103,6 +122,16 @@ function Header({ variant }: { variant?: string }) {
           >
             <div onClick={handleToggle}>
               {open ? <Close /> : <Shopping_Cart size={28} />}
+            </div>
+          </motion.div>
+          <motion.div
+            variants={headerVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="py-1 px-6"
+          >
+            <div onClick={handleWishlistToggle}>
+              {wishlistOpen ? <CloseWishlist /> : <Heart size={24} />}
             </div>
           </motion.div>
         </motion.div>
@@ -159,6 +188,10 @@ function Header({ variant }: { variant?: string }) {
           />
         </motion.ul>
       </motion.header>
+      <Wishlist
+        wishlistOpen={wishlistOpen}
+        handleWishlistToggle={handleWishlistToggle}
+      />
       <Cart cartOpen={open} handleToggle={handleToggle} />
     </>
   )
