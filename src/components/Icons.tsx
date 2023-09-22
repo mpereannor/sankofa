@@ -135,3 +135,44 @@ xmlns="http://www.w3.org/2000/svg"
 </svg>
 );
 
+
+
+export const ArrowRight = ({ size = 21, strokeWidth = 1, color = "#ffffff", ...props }) => (
+<svg
+width={size}
+height={size}
+fill="none"
+stroke={color}
+strokeLinecap="round"
+strokeLinejoin="round"
+strokeWidth={strokeWidth}
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"
+{...props}
+>
+<path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z" />
+<path d="m12 16 4-4-4-4" />
+<path d="M8 12h8" />
+</svg>
+);
+
+
+export const ArrowLeft = ({ size = 21, strokeWidth = 1, color = "#ffffff", ...props }) => (
+<svg
+width={size}
+height={size}
+fill="none"
+stroke={color}
+strokeLinecap="round"
+strokeLinejoin="round"
+strokeWidth={strokeWidth}
+viewBox="0 0 24 24"
+xmlns="http://www.w3.org/2000/svg"
+{...props}
+>
+<path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z" />
+<path d="m12 8-4 4 4 4" />
+<path d="M16 12H8" />
+</svg>
+);
+
