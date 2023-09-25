@@ -8,6 +8,8 @@ import { getProductDetail } from "@/lib/queries"
 import { client } from "../../../../../sanity/lib/client"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import AddToCartButton from "@/components/elements/AddToCartButton"
+import AddToWishlistButton from "@/components/elements/AddToWishlistButton"
 
 const ProductModalPage = async (props: any) => {
   const { slug } = props.params
@@ -127,8 +129,8 @@ const ProductModalPage = async (props: any) => {
                 relative"
                 >
                   {/* wishlistIcon */}
-                  <div className=" z-10 absolute top-0 left-0 mx-4 my-2 opacity-50 hover:opacity-100">
-                    <Heart size={30} className="rounded-2xl bg-black p-1.5" />
+                  <div className=" z-10 absolute top-0 left-0 mx-4 my-2  hover:opacity-100">
+                    <AddToWishlistButton product={product} />{" "}
                   </div>
                   {product?.gallery.map((imgs: string, index: number) => (
                     <div
@@ -157,13 +159,13 @@ const ProductModalPage = async (props: any) => {
                 <div className="flex flex-col gap-1 text-center items-center md:items-start">
                   <p className=" font-semibold">{product?.name}</p>
 
-                  <p className="font-thin text-sm text-left">{product?.description}</p>
+                  <p className="font-thin text-sm text-left">
+                    {product?.description}
+                  </p>
                   <p className="font-light mt-2">GHS {product?.price}.00</p>
                 </div>
                 <div className="flex justify-around md:flex-col lg:flex-row lg:justify-between md:gap-4  md:w-[80%] ">
-                  <button className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">
-                    Add to Cart
-                  </button>
+                  <AddToCartButton product={product} />
                   <button className="bg-[#111111] text-white hover:bg-white hover:border hover:border-[#111111] hover:text-black py-1 px-6 font-light ">
                     View on IG
                   </button>
