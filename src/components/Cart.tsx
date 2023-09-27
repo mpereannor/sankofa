@@ -2,6 +2,8 @@
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 import { Close } from "./Icons"
+import { useContext, useRef } from "react"
+import { AppContext } from "@/context/AppContext"
 
 function Cart({
   cartOpen,
@@ -10,6 +12,19 @@ function Cart({
   cartOpen: boolean
   handleToggle: () => void
 }) {
+  const {
+    state: { cart },
+    resetItems,
+    addItem,
+  } = useContext(AppContext)
+  const btnRef = useRef<any>()
+  const handleCheckout = () => {
+    resetItems("checkout")
+    cart.forEach((cartItem) => {
+      addItem("checkout", cartItem, cartItem.count)
+      handleToggle()
+    })
+  }
   return (
     <>
       <AnimatePresence>

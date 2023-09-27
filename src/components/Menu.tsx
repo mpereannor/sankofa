@@ -1,8 +1,10 @@
-import * as React from "react"
 import { motion } from "framer-motion"
 import { headerVariants, menuVariants } from "@/lib/animation"
 import { Close, Instagram, Search, Shopping_Cart } from "./Icons"
 import Link from "next/link"
+import { IItem } from "@/lib/model"
+import { AppContext } from "@/context/AppContext"
+import { useContext } from "react"
 
 export const Navigation = ({ openModal }: any) => (
   <motion.ul variants={menuVariants}>
@@ -27,7 +29,22 @@ const menuItemVariants = {
   },
 }
 
-export const MenuItem = ({ openModal,handleToggle, open }: any) => {
+interface IMenuItemProps {
+  openModal: any
+  handleToggle: any
+  open: any
+  cart: IItem[]
+}
+export const MenuItem = ({
+  openModal,
+  handleToggle,
+  open,
+  cart,
+}: IMenuItemProps) => {
+  // const {
+  //   state: { cart },
+  // } = useContext(AppContext)
+  // console.log('cartlength',cart.length)
   return (
     <motion.div
       className={`flex mt-20 p-10 gap-20 w-screen flex-col items-center h-screen  `}
@@ -71,9 +88,24 @@ export const MenuItem = ({ openModal,handleToggle, open }: any) => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
-        <div onClick={handleToggle}>
-          {open ? <Close /> : <Shopping_Cart size={28} />}
-        </div>
+        {cart.length !== 0 ? (
+          <div onClick={handleToggle}>
+            {open ? (
+              <Close />
+            ) : (
+              <div className="flex">
+                <Shopping_Cart size={28} />
+                <div className=" text-sm font-bold text-white">
+                  {cart.length}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div onClick={handleToggle}>
+            {open ? <Close /> : <Shopping_Cart size={28} />}
+          </div>
+        )}
       </motion.div>
     </motion.div>
   )

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -18,6 +18,7 @@ import { MenuItem } from "./Menu"
 import { useScrollPosition } from "@/lib/hooks/usePosition"
 import Cart from "./Cart"
 import Wishlist from "./Wishlist"
+import { AppContext } from "@/context/AppContext"
 
 function Header({ variant }: { variant?: string }) {
   function classNames(...classes: any[]) {
@@ -31,11 +32,13 @@ function Header({ variant }: { variant?: string }) {
   const [open, cycleOpen] = useCycle(false, true)
   const [wishlistOpen, wishlistCycleOpen] = useCycle(false, true)
 
+  const {
+    state: { cart },
+  } = useContext(AppContext)
   // mobile nav style
   const isHiddenStyle = "hidden"
   const isVisibleStyle =
     "block lg:hidden absolute space-y-10 bg-transparent w-full  left-0 opacity-90  bg-gradient-to-tl from-slate-800 via-black to-black right-0 top-0 max-h-screen text-black overflow-y-hidden"
-
   const openModal = () => {
     setIsModalOpen(true)
   }
@@ -120,9 +123,22 @@ function Header({ variant }: { variant?: string }) {
             whileTap={{ scale: 0.95 }}
             className="py-1 px-6"
           >
-            <div onClick={handleToggle}>
-              {open ? <Close /> : <Shopping_Cart size={28} />}
-            </div>
+            {cart.length !== 0 ? (
+              <div onClick={handleToggle}>
+                {open ? (
+                  <Close />
+                ) : (
+                  <div className="flex ">
+                    <Shopping_Cart size={28} />
+                    <div className=" text-sm font-bold">{cart.length}</div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div onClick={handleToggle}>
+                {open ? <Close /> : <Shopping_Cart size={28} />}
+              </div>
+            )}
           </motion.div>
           <motion.div
             variants={headerVariants}
@@ -185,6 +201,7 @@ function Header({ variant }: { variant?: string }) {
             openModal={openModal}
             open={open}
             handleToggle={handleToggle}
+            cart={cart}
           />
         </motion.ul>
       </motion.header>
