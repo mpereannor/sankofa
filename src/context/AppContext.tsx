@@ -17,7 +17,6 @@ export const AppContextProvider: React.FC<IAppContextProviderProps> = ({
 }) => {
   const [state, setState] = useState<IState>(initialState)
   const addItem = (key: ItemKey, product: IProduct, count?: number) => {
-    console.log('isAdded')
     setState((prevState) => ({
       ...prevState,
       [key]: [...prevState[key], { ...product, count: count || 1 }],

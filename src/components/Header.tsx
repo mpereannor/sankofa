@@ -33,7 +33,7 @@ function Header({ variant }: { variant?: string }) {
   const [wishlistOpen, wishlistCycleOpen] = useCycle(false, true)
 
   const {
-    state: { cart },
+    state: { cart },resetItems, addItem, increaseCount, decreaseCount, removeItem,
   } = useContext(AppContext)
   // mobile nav style
   const isHiddenStyle = "hidden"
@@ -209,7 +209,7 @@ function Header({ variant }: { variant?: string }) {
         wishlistOpen={wishlistOpen}
         handleWishlistToggle={handleWishlistToggle}
       />
-      <Cart cartOpen={open} handleToggle={handleToggle} />
+      <Cart cartOpen={open} handleToggle={handleToggle} cart={cart} increaseCount={increaseCount} decreaseCount={decreaseCount} removeItem={removeItem} resetItems={resetItems} addItem={addItem}/>
     </>
   )
 }

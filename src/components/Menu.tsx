@@ -3,12 +3,10 @@ import { headerVariants, menuVariants } from "@/lib/animation"
 import { Close, Instagram, Search, Shopping_Cart } from "./Icons"
 import Link from "next/link"
 import { IItem } from "@/lib/model"
-import { AppContext } from "@/context/AppContext"
-import { useContext } from "react"
 
 export const Navigation = ({ openModal }: any) => (
   <motion.ul variants={menuVariants}>
-    <MenuItem openModal={openModal} />
+    <MenuItem openModal={openModal} handleToggle={undefined} open={undefined} cart={[]} />
   </motion.ul>
 )
 
@@ -41,10 +39,7 @@ export const MenuItem = ({
   open,
   cart,
 }: IMenuItemProps) => {
-  // const {
-  //   state: { cart },
-  // } = useContext(AppContext)
-  // console.log('cartlength',cart.length)
+
   return (
     <motion.div
       className={`flex mt-20 p-10 gap-20 w-screen flex-col items-center h-screen  `}
