@@ -1,7 +1,9 @@
-import { formatPrice, getSubstring } from "@/lib/helpers"
-import React from "react"
+"use client"
+import { AppContext } from "@/context/AppContext"
+import { calculateItemsTotal, formatPrice, getSubstring } from "@/lib/helpers"
+import React, { useContext, useEffect, useState } from "react"
 
-const checkout = [
+const chkeckout = [
   {
     id: 1,
     mainImage: `https://source.unsplash.com/featured/300x201`,
@@ -23,6 +25,20 @@ const subTotal = 240000
 const tax = 8000
 
 export const Checkout = () => {
+  const [subTotal, setSubTotal] = useState<number>(0)
+  const [tax, setTax] = useState<number>(0)
+
+  const {
+    state: { checkout },
+  } = useContext(AppContext)
+
+  useEffect(() => {
+    const subTotal = calculateItemsTotal(checkout)
+    const tax = 0.05 * subTotal
+    setSubTotal(subTotal)
+    setTax(tax)
+  }, [checkout])
+
   return (
     <div className="bg-white flex flex-col gap-6 lg:gap-0    lg:flex-row lg:w-[90%] w-full  mx-auto justify-around p-4">
       <div className="border-gray-400 flex flex-col  lg:w-[60%] lg:full gap-6">
@@ -49,7 +65,7 @@ export const Checkout = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-md font-semibold text-gray-900">
-                    {formatPrice(item.price)}
+                    GHS {formatPrice(item.price)}
                   </p>
                   <p className="text-xs font-light italic text-gray-700">
                     Quantity: {item.count}
@@ -117,8 +133,8 @@ export const Checkout = () => {
           <h2 className="text-gray-800 font-semibold">Payment Details</h2>
         </div>
         <div className=" px-2 py-1 flex flex-col  space-y-4 ">
-          {/* <div className="space-y-4">
-            <div className="flex justify-between">
+          <div className="space-y-4">
+            {/* <div className="flex justify-between">
               <input
                 type="text"
                 placeholder="Enter Coupon Code"
@@ -127,7 +143,7 @@ export const Checkout = () => {
               <button className="bg-brand-primary text-black rounded-full ml-[-40px] px-8 py-2 hover:bg-brand-primaryDark active:bg-brand-primaryDark">
                 Apply Coupon
               </button>
-            </div>
+            </div> */}
             <hr className="mt-2" />
             <div>
               <h2 className="text-sm my-4 font-medium">Payment Option</h2>
@@ -147,7 +163,7 @@ export const Checkout = () => {
               </div>
             </div>
           </div>
-          <hr className="mt-2" /> */}
+          <hr className="mt-2" />
           <div className="flex flex-col text-gray-700  px-2 py-1">
             <div className="flex justify-between my-4 font-semibold ">
               <span className="">Sub Total</span>
@@ -157,7 +173,7 @@ export const Checkout = () => {
               <span className="">Tax(10%)</span>
               <span className="">GHS {formatPrice(tax)}</span>
             </div>
-            {/* <div className="flex justify-between items-center my-4">
+            {/* <div className="flex justify-between items-center my-4 text-sm">
               <span className="">Coupon Discount</span>
               <span className="">-GHS {formatPrice(tax)}</span>
             </div> */}
@@ -168,7 +184,9 @@ export const Checkout = () => {
             <hr />
             <div className="flex justify-between items-center my-4">
               <span className="font-bold">Total</span>
-              <span className="font-bold">GHS {formatPrice(subTotal)}</span>
+              <span className="font-bold">
+                GHS {formatPrice(subTotal + tax)}
+              </span>
             </div>
           </div>
 

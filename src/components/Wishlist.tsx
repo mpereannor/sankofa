@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion"
 import { CloseWishlist, Shopping_Cart } from "./Icons"
 import { IItem, IProduct, ItemKey } from "@/lib/model"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
 import { formatPrice } from "@/lib/helpers"
 
 function Wishlist({
@@ -20,11 +19,8 @@ function Wishlist({
   addItem: (key: ItemKey, product: IProduct, count?: number) => void
   isAdded: (key: ItemKey, productId: string) => boolean
   resetItems: (key: ItemKey) => void
-  increaseCount: (key: ItemKey, productId: string) => void
-  decreaseCount: (key: ItemKey, productId: string) => void
   removeItem: (key: ItemKey, productId: string) => void
 }) {
-  const router = useRouter()
 
   return (
     <AnimatePresence>
