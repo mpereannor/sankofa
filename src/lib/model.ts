@@ -11,11 +11,11 @@ export interface IProduct {
   gallery: string[]
 }
 
-export interface IProductImg{ 
-    id: string
-    slug: string
-    mainImage: string
-    name: string
+export interface IProductImg {
+  id: string
+  slug: string
+  mainImage: string
+  name: string
 }
 export interface ICategory {
   id: string
@@ -23,11 +23,6 @@ export interface ICategory {
   image: string
   slug: string
 }
-
-export interface IItem extends IProduct {
-  count: number;
-}
-
 
 export interface IState {
   cart: IItem[]

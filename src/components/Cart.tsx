@@ -138,7 +138,7 @@ function Cart({
                           </p>
                         </div>
                         <div className="flex justify-between">
-                          <p className="text-gray-700">Shippng</p>
+                          <p className="text-gray-700">Shipping</p>
                           <p className="text-gray-700 font-light"> 0</p>
                         </div>
                         <hr className="my-4" />

@@ -2,27 +2,8 @@
 import { AppContext } from "@/context/AppContext"
 import { calculateItemsTotal, formatPrice, getSubstring } from "@/lib/helpers"
 import React, { useContext, useEffect, useState } from "react"
+import Image from "next/image"
 
-const chkeckout = [
-  {
-    id: 1,
-    mainImage: `https://source.unsplash.com/featured/300x201`,
-    name: `new name`,
-    description: `new world`,
-    price: 2000,
-    count: 5,
-  },
-  {
-    id: 2,
-    mainImage: `https://source.unsplash.com/featured/300x202`,
-    name: `new name`,
-    description: `new world`,
-    price: 20900,
-    count: 5,
-  },
-]
-const subTotal = 240000
-const tax = 8000
 
 export const Checkout = () => {
   const [subTotal, setSubTotal] = useState<number>(0)
@@ -53,7 +34,13 @@ export const Checkout = () => {
                 className="xs:flex-row gap-6 xs:gap-0 flex-col flex p-2 justify-between  "
               >
                 <div className="flex ">
-                  <img className="w-[100px] h-[100px] " src={item.mainImage} />
+                  <Image
+                    src={item.mainImage}
+                    alt=""
+                    sizes="33vw"
+                    width={100}
+                    height={100}
+                  />
                   <div className="mx-2 items-center">
                     <p className="text-md font-semibold text-gray-900 max-w-[500px]">
                       {item.name}
@@ -170,7 +157,7 @@ export const Checkout = () => {
               <span className="">GHS {formatPrice(subTotal)}</span>
             </div>
             <div className="flex justify-between items-center my-4 text-sm">
-              <span className="">Tax(10%)</span>
+              <span className="">Tax(5%)</span>
               <span className="">GHS {formatPrice(tax)}</span>
             </div>
             {/* <div className="flex justify-between items-center my-4 text-sm">

@@ -1,8 +1,8 @@
 import { IContext, IProduct, IState, ItemKey } from "@/lib/model"
-import { ReactNode, createContext, useState } from "react"
+import React, { ReactNode, createContext, useContext } from "react"
+import { useLocalStorage } from "@mantine/hooks"
 
 export const AppContext = createContext<IContext>(null as any)
-
 interface IAppContextProviderProps {
   children: ReactNode
 }
@@ -15,7 +15,10 @@ const initialState: IState = {
 export const AppContextProvider: React.FC<IAppContextProviderProps> = ({
   children,
 }) => {
-  const [state, setState] = useState<IState>(initialState)
+  const [state, setState] = useLocalStorage<IState>({
+    key: "sankofa",
+    defaultValue: initialState,
+  })
   const addItem = (key: ItemKey, product: IProduct, count?: number) => {
     setState((prevState) => ({
       ...prevState,
@@ -37,28 +40,37 @@ export const AppContextProvider: React.FC<IAppContextProviderProps> = ({
   }
 
   const increaseCount = (key: ItemKey, productId: string) => {
-    const items = [...state[key]]
-    const index = items.findIndex((item) => item.id === productId)
-    items[index].count += 1
-    setState((prevState) => ({ ...prevState, [key]: items }))
+    if (state) {
+      const items = [...state[key]]
+      const index = items.findIndex((item) => item.id === productId)
+      if (index !== -1) {
+        items[index].count += 1
+        setState((prevState) => ({ ...prevState, [key]: items }))
+      }
+    }
   }
 
   const decreaseCount = (key: ItemKey, productId: string) => {
-    const items = [...state[key]]
-    const index = items.findIndex((item) => item.id === productId)
-    if (items[index].count > 1) {
-      items[index].count -= 1
+    if (state) {
+      const items = [...state[key]]
+      const index = items.findIndex((item) => item.id === productId)
+      if (items[index].count > 1) {
+        items[index].count -= 1
+      }
+      setState((prevState) => ({ ...prevState, [key]: items }))
     }
-    setState((prevState) => ({ ...prevState, [key]: items }))
   }
   const isAdded = (key: ItemKey, productId: string): boolean => {
-
-    return state[key].some((item) => item.id === productId)
+    if (state && state[key]) {
+      return state[key].some((item) => item.id === productId)
+    }
+    return false
   }
 
   return (
     <AppContext.Provider
       value={{
+        //@ts-ignore
         state,
         addItem,
         removeItem,
@@ -71,4 +83,12 @@ export const AppContextProvider: React.FC<IAppContextProviderProps> = ({
       {children}
     </AppContext.Provider>
   )
+}
+
+export function useAppContext() {
+  const context = useContext(AppContext)
+  if (context === undefined) {
+    throw new Error("useAppContext must be used within a AppContextProvider")
+  }
+  return context
 }

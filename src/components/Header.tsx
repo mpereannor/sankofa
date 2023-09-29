@@ -18,7 +18,7 @@ import { MenuItem } from "./Menu"
 import { useScrollPosition } from "@/lib/hooks/usePosition"
 import Cart from "./Cart"
 import Wishlist from "./Wishlist"
-import { AppContext } from "@/context/AppContext"
+import { AppContext, useAppContext } from "@/context/AppContext"
 
 function Header({ variant }: { variant?: string }) {
   function classNames(...classes: any[]) {
@@ -40,7 +40,7 @@ function Header({ variant }: { variant?: string }) {
     increaseCount,
     decreaseCount,
     removeItem,
-  } = useContext(AppContext)
+  } = useAppContext()
   // mobile nav style
   const isHiddenStyle = "hidden"
   const isVisibleStyle =
@@ -59,7 +59,7 @@ function Header({ variant }: { variant?: string }) {
   const handleWishlistToggle = () => {
     wishlistCycleOpen()
   }
- 
+
   return (
     <>
       <AnimatePresence>
@@ -222,6 +222,9 @@ function Header({ variant }: { variant?: string }) {
             open={open}
             handleToggle={handleToggle}
             cart={cart}
+            wishlist={wishlist}
+            handleWishlistToggle={handleWishlistToggle}
+            wishlistOpen={wishlistOpen}
           />
         </motion.ul>
       </motion.header>

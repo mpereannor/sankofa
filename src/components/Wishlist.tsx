@@ -21,7 +21,6 @@ function Wishlist({
   resetItems: (key: ItemKey) => void
   removeItem: (key: ItemKey, productId: string) => void
 }) {
-
   return (
     <AnimatePresence>
       {wishlistOpen && (
