@@ -33,7 +33,13 @@ function Header({ variant }: { variant?: string }) {
   const [wishlistOpen, wishlistCycleOpen] = useCycle(false, true)
 
   const {
-    state: { cart },resetItems, addItem, increaseCount, decreaseCount, removeItem,
+    state: { cart, wishlist },
+    resetItems,
+    addItem,
+    isAdded,
+    increaseCount,
+    decreaseCount,
+    removeItem,
   } = useContext(AppContext)
   // mobile nav style
   const isHiddenStyle = "hidden"
@@ -53,6 +59,7 @@ function Header({ variant }: { variant?: string }) {
   const handleWishlistToggle = () => {
     wishlistCycleOpen()
   }
+ 
   return (
     <>
       <AnimatePresence>
@@ -146,9 +153,22 @@ function Header({ variant }: { variant?: string }) {
             whileTap={{ scale: 0.95 }}
             className="py-1 px-6"
           >
-            <div onClick={handleWishlistToggle}>
-              {wishlistOpen ? <CloseWishlist /> : <Heart size={24} />}
-            </div>
+            {wishlist.length !== 0 ? (
+              <div onClick={handleWishlistToggle}>
+                {wishlistOpen ? (
+                  <CloseWishlist />
+                ) : (
+                  <div className="flex ">
+                    <Heart size={28} />
+                    <div className=" text-sm font-bold">{wishlist.length}</div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div onClick={handleWishlistToggle}>
+                {wishlistOpen ? <CloseWishlist /> : <Heart size={28} />}
+              </div>
+            )}
           </motion.div>
         </motion.div>
         <motion.div
@@ -208,8 +228,22 @@ function Header({ variant }: { variant?: string }) {
       <Wishlist
         wishlistOpen={wishlistOpen}
         handleWishlistToggle={handleWishlistToggle}
+        wishlist={wishlist}
+        isAdded={isAdded}
+        removeItem={removeItem}
+        resetItems={resetItems}
+        addItem={addItem}
       />
-      <Cart cartOpen={open} handleToggle={handleToggle} cart={cart} increaseCount={increaseCount} decreaseCount={decreaseCount} removeItem={removeItem} resetItems={resetItems} addItem={addItem}/>
+      <Cart
+        cartOpen={open}
+        handleToggle={handleToggle}
+        cart={cart}
+        increaseCount={increaseCount}
+        decreaseCount={decreaseCount}
+        removeItem={removeItem}
+        resetItems={resetItems}
+        addItem={addItem}
+      />
     </>
   )
 }

@@ -47,7 +47,7 @@ function Cart({
             exit={{ width: 0, transition: { delay: 0.5, duration: 0.3 } }}
           >
             <motion.div initial="closed" animate="open" exit="closed">
-              <div className=" z-10 absolute -top-4 -left-4 m-1 opacity-50 hover:opacity-100">
+              <div className=" z-10 absolute -top-4 -left-4 m-1 opacity-100 hover:opacity-80">
                 <Close
                   onClick={handleToggle}
                   size={25}
