@@ -39,7 +39,7 @@ function Cart({
       <AnimatePresence>
         {cartOpen && (
           <motion.aside
-            className=" fixed top-20 bottom-0 bg-white  right-0 h-fit z-[999] [--width:90%] md:[--width:60%] lg:[--width:50%]"
+            className="  fixed top-20 bottom-0 bg-white  right-0  z-[999] [--width:90%] md:[--width:60%] lg:[--width:50%]  overflow-y-auto"
             initial={{ width: 0 }}
             animate={{
               width: "var(--width)",
@@ -60,7 +60,7 @@ function Cart({
                 ) : (
                   <>
                     {cart.map((item) => (
-                      <div key={item.id}>
+                      <div key={item.id} className="">
                         <div className=" mb-2 sm:py-4 sm:px-4 py:2 px:2 border-gray-300 border-b flex">
                           <div className="sm:block hidden w-20">
                             <Image
@@ -153,9 +153,12 @@ function Cart({
                       </div>
                       <div className="flex justify-around mt-8 ">
                         {/* <Link href="/checkout"> */}
-                          <button onClick={handleCheckout}className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">
-                            Checkout
-                          </button>
+                        <button
+                          onClick={handleCheckout}
+                          className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light "
+                        >
+                          Checkout
+                        </button>
                         {/* </Link> */}
                         <Link href="/shop">
                           <button className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">

@@ -25,7 +25,7 @@ function Wishlist({
     <AnimatePresence>
       {wishlistOpen && (
         <motion.aside
-          className="fixed top-20 bottom-0 bg-white  right-0 h-fit z-[999] [--width:90%] md:[--width:60%] lg:[--width:40%]"
+          className="fixed top-20 bottom-0 bg-white  right-0  z-[999] [--width:90%] md:[--width:60%] lg:[--width:40%]  overflow-y-auto"
           initial={{ width: 0 }}
           animate={{
             width: "var(--width)",

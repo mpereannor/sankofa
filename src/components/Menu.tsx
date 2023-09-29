@@ -64,7 +64,7 @@ export const MenuItem = ({
 }: IMenuItemProps) => {
   return (
     <motion.div
-      className={`flex mt-20 p-10 gap-20 w-screen flex-col items-center h-screen  `}
+      className={`flex mt-20 p-10 gap-20 w-screen flex-col items-center h-screecn  overflow-y-auto `}
       variants={menuItemVariants}
     >
       <motion.div
