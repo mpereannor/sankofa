@@ -46,7 +46,7 @@ const menuItemVariants = {
 
 interface IMenuItemProps {
   openModal: any
-  handleToggle:any
+  handleToggle: any
   handleWishlistToggle: any
   open: any
   wishlistOpen: any
@@ -74,32 +74,6 @@ export const MenuItem = ({
       >
         <Search onClick={openModal} />
       </motion.div>
-      <motion.div
-        variants={headerVariants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <Instagram />
-      </motion.div>
-      <motion.button
-        variants={headerVariants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        type="button"
-        className="bg-transparent text-white py-1 px-6  font-light hover:border-transparent "
-      >
-        <Link href="/products">Gallery</Link>
-      </motion.button>
-
-      <motion.button
-        variants={headerVariants}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        type="button"
-        className="bg-transparent text-white py-1 px-6  font-light hover:border-transparent "
-      >
-        <Link href="/shop">Shop</Link>
-      </motion.button>
       <motion.div
         variants={headerVariants}
         whileHover={{ scale: 1.1 }}
@@ -147,6 +121,33 @@ export const MenuItem = ({
             {wishlistOpen ? <CloseWishlist /> : <Heart size={28} />}
           </div>
         )}
+      </motion.div>
+
+      <motion.button
+        variants={headerVariants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        type="button"
+        className="bg-transparent text-white py-1 px-6  font-light hover:border-transparent "
+      >
+        <Link href="/products">Gallery</Link>
+      </motion.button>
+
+      <motion.button
+        variants={headerVariants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        type="button"
+        className="bg-transparent text-white py-1 px-6  font-light hover:border-transparent "
+      >
+        <Link href="/shop">Shop</Link>
+      </motion.button>
+      <motion.div
+        variants={headerVariants}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Instagram />
       </motion.div>
     </motion.div>
   )

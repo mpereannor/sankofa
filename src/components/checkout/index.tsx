@@ -4,7 +4,6 @@ import { calculateItemsTotal, formatPrice, getSubstring } from "@/lib/helpers"
 import React, { useContext, useEffect, useState } from "react"
 import Image from "next/image"
 
-
 export const Checkout = () => {
   const [subTotal, setSubTotal] = useState<number>(0)
   const [tax, setTax] = useState<number>(0)
@@ -23,7 +22,7 @@ export const Checkout = () => {
   return (
     <div className="bg-white flex flex-col gap-6 lg:gap-0    lg:flex-row lg:w-[90%] w-full  mx-auto justify-around p-4">
       <div className="border-gray-400 flex flex-col  lg:w-[60%] lg:full gap-6">
-        <div className="  border border-gray-400">
+        <div className="">
           <div className="py-1 px-4 m-1">
             <h2 className="text-gray-800 font-semibold">Review Items</h2>
           </div>
@@ -62,7 +61,7 @@ export const Checkout = () => {
             ))}
           </div>
         </div>
-        <div className="border border-gray-400">
+        <div className="">
           <div className="py-1 px-4 m-1">
             <h2 className="text-gray-800 font-semibold">
               Delivery Information
@@ -115,7 +114,7 @@ export const Checkout = () => {
           </div>
         </div>
       </div>
-      <div className="border border-gray-400 w-full  lg:w-1/3 h-fit pb-2">
+      <div className=" w-full  lg:w-1/3 h-fit pb-2">
         <div className="py-1 px-4 m-1">
           <h2 className="text-gray-800 font-semibold">Payment Details</h2>
         </div>
