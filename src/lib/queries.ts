@@ -59,7 +59,7 @@ export const getProductDetail = groq`
     }
 `
 
-export const getAllProductsBySearch = groq `
+export const getAllProductsBySearch = groq`
     *[_type == "product" && (name match $searchText || description match $searchText) ] {
       ...,
       "id": _id,
@@ -74,3 +74,20 @@ export const getAllProductsBySearch = groq `
     }
 `
 
+export const getAllFeaturedProducts = groq`
+    *[_type == "featuredProducts"]{
+      
+        "trendingProducts": trendingProducts[]->{
+            "id": _id,
+            name,
+            "mainImage": mainImage.asset->url,
+            slug
+        },
+        "mostSellingProducts": mostSellingProducts[]->{
+            "id": _id,
+            slug,
+            name,
+            "mainImage": mainImage.asset->url,
+        }
+    }
+`

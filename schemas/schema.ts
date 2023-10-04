@@ -7,7 +7,7 @@ import author from "./author"
 import artist from "./artist"
 import product from "./product"
 import gallery from "./gallery"
-import featured from "./featured"
+import featured from "./featuredProducts"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [

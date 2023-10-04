@@ -24,6 +24,12 @@ export interface ICategory {
   slug: string
 }
 
+export interface IFeaturedItems {
+  // topCategories: ICategory[];
+  // bestDeals: IProduct[];
+  // mostSellingProducts: IProduct[];
+  trendingProducts: IProduct[]
+}
 export interface IState {
   cart: IItem[]
   wishlist: IItem[]
