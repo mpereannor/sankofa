@@ -45,4 +45,4 @@ Here are screenshots that show the E-commerce demo application in use.
 ![Wishlist](/screenshots/wishlist.png?raw=true "Optional Title")
 
 **Checkout**
-![Product Detail Page](/screenshots/checkout.png?raw=true "Optional Title")
+![Checkout](/screenshots/checkout.png?raw=true "Optional Title")
