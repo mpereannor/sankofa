@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext, useState } from "react"
+import React, {  useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -18,7 +18,7 @@ import { MenuItem } from "./Menu"
 import { useScrollPosition } from "@/lib/hooks/usePosition"
 import Cart from "./Cart"
 import Wishlist from "./Wishlist"
-import { AppContext, useAppContext } from "@/context/AppContext"
+import {  useAppContext } from "@/context/AppContext"
 
 function Header({ variant }: { variant?: string }) {
   function classNames(...classes: any[]) {
