@@ -28,8 +28,24 @@ Here are screenshots that show the E-commerce demo application in use.
 **Home Page**
 
 ![Home Page](/screenshots/homepage_desktop.png?raw=true "Optional Title")
+
+**Home Page Mobile**
 ![Home Page Mobile](/screenshots/homepage_mobile.png?raw=true "Optional Title")
 
+**Product Page**
+![Product Page](/screenshots/productpage.png?raw=true "Optional Title")
+
+**Product Detail Page**
+![Product Detail Page](/screenshots/productdetailpage.png?raw=true "Optional Title")
+
+**Cart**
+![Cart](/screenshots/cart.png?raw=true "Optional Title")
+
+**Wishlist**
+![Wishlist](/screenshots/wishlist.png?raw=true "Optional Title")
+
+**Checkout**
+![Product Detail Page](/screenshots/checkout.png?raw=true "Optional Title")
 
 
 
