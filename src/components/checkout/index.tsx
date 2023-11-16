@@ -3,7 +3,6 @@ import { AppContext } from "@/context/AppContext"
 import { calculateItemsTotal, formatPrice, getSubstring } from "@/lib/helpers"
 import React, { useContext, useEffect, useState } from "react"
 import Image from "next/image"
-import { PaystackButton, usePaystackPayment } from "react-paystack"
 import PayButton from "../elements/PayButton"
 
 export const Checkout = () => {
@@ -14,37 +13,6 @@ export const Checkout = () => {
     email: "",
   })
 
-  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""
-  const config = {
-    reference: new Date().getTime().toString(),
-    email: userInfo.email,
-    amount: (subTotal + tax) / 100,
-    publicKey,
-  }
-
-  const componentProps = {
-    email: userInfo.email,
-    amount: (subTotal + tax) / 100,
-    metadata: {
-      name: userInfo.name,
-      phone: userInfo.phone,
-    },
-    publicKey,
-    text: "Buy Now",
-    onSuccess: ({ reference }) => {
-      alert(`Your purchase was successfuul. reference ${reference}`)
-    },
-    onClose: () => alert("wait"),
-  }
-
-  const onSuccess = (reference) => {
-    console.log(reference)
-  }
-  const onClose = () => {
-    console.log("closed")
-  }
-
-  const initializePayment = usePaystackPayment(config)
   const {
     state: { checkout },
   } = useContext(AppContext)
@@ -141,7 +109,6 @@ export const Checkout = () => {
                 />
               </div>
             </form>
-            {/* <PaystackButton {...componentProps} /> */}
           </div>
         </div>
       </div>
@@ -151,18 +118,8 @@ export const Checkout = () => {
         </div>
         <div className=" px-2 py-1 flex flex-col  space-y-4 ">
           <div className="space-y-4">
-            {/* <div className="flex justify-between">
-              <input
-                type="text"
-                placeholder="Enter Coupon Code"
-                className="w-full  px-4 py-1 border text-black  focus:outline-black"
-              />
-              <button className="bg-brand-primary text-black rounded-full ml-[-40px] px-8 py-2 hover:bg-brand-primaryDark active:bg-brand-primaryDark">
-                Apply Coupon
-              </button>
-            </div> */}
-            <hr className="mt-2" />
-            <div>
+            {/* <hr className="mt-2" /> */}
+            {/* <div>
               <h2 className="text-sm my-4 font-medium">Payment Option</h2>
               <div className="space-y-2 text-gray-700 font-light text-sm">
                 <div className="flex items-center">
@@ -178,7 +135,7 @@ export const Checkout = () => {
                   <label>Credit Card (Master/Visa)</label>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <hr className="mt-2" />
           <div className="flex flex-col text-gray-700  px-2 py-1">
@@ -190,10 +147,6 @@ export const Checkout = () => {
               <span className="">Tax(5%)</span>
               <span className="">GHS {formatPrice(tax)}</span>
             </div>
-            {/* <div className="flex justify-between items-center my-4 text-sm">
-              <span className="">Coupon Discount</span>
-              <span className="">-GHS {formatPrice(tax)}</span>
-            </div> */}
             <div className="flex justify-between items-center my-4 text-sm">
               <span className="">Shipping Cost</span>
               <span className=""> GHS {formatPrice(0)}</span>
@@ -206,15 +159,6 @@ export const Checkout = () => {
               </span>
             </div>
           </div>
-
-          {/* <button
-            onClick={() => {
-              initializePayment(onSuccess, onClose)
-            }}
-            className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light "
-          >
-            Pay GHS {formatPrice(subTotal)}
-          </button> */}
           <PayButton amount={subTotal + tax} email={userInfo.email} />
         </div>
       </div>

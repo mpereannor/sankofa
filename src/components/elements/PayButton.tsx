@@ -1,11 +1,21 @@
-import { useState } from "react"
+import { useAppContext } from "@/context/AppContext"
+import { ItemKey } from "@/lib/model"
+import { useRouter } from "next/navigation"
 import { PaystackButton } from "react-paystack"
 
 const PayButton = ({ amount, email }: { amount: number; email: string }) => {
+  const { resetItems } = useAppContext()
+  const router = useRouter()
+
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""
 
   const handlePaystackSuccessAction = (reference: any) => {
-    alert(`Your purchase was successful. reference ${reference}`)
+    alert(`Your purchase was successful.`)
+    console.log("ref", reference)
+    resetItems("checkout")
+    setTimeout(() => {
+      router.push("/")
+    }, 3000)
   }
 
   const componentProps = {
