@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 
 import { IProduct } from "@/lib/model"
-import { ArrowLeft, ArrowRight, Close, Heart } from "@/components/Icons"
+import {  Close } from "@/components/Icons"
 import { getProductDetail } from "@/lib/queries"
 import { client } from "../../../../../sanity/lib/client"
 import { useState } from "react"
