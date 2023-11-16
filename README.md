@@ -38,14 +38,11 @@ Here are screenshots that show the E-commerce demo application in use.
 **Product Detail Page**
 ![Product Detail Page](/screenshots/productdetailpage.png?raw=true "Optional Title")
 
-**Cart**
-![Cart](/screenshots/cart.png?raw=true "Optional Title")
+**Shopping Cart**
+![Shopping Cart](/screenshots/cart.png?raw=true "Optional Title")
 
 **Wishlist**
 ![Wishlist](/screenshots/wishlist.png?raw=true "Optional Title")
 
 **Checkout**
 ![Product Detail Page](/screenshots/checkout.png?raw=true "Optional Title")
-
-
-
