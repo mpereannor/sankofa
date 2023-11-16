@@ -24,20 +24,18 @@ function Hero() {
         style={{ backgroundSize: "100% cover" }}
       >
         <div className="flex  w-screen h-screen justify-center items-center">
-          <div className="flex md:flex-row flex-col gap-y-6  justify-evenly w-[50%] ">
+          <div className="flex lg:flex-row items-center flex-col gap-y-6  justify-evenly w-[50%] ">
             <Link href={"/products"}>
-              <button className="bg-[#111111] text-white  hover:bg-white w-inherit  hover:text-black py-1 px-6   font-light ">
+              <button className="bg-[#111111] text-white  hover:bg-white w-[200px]  hover:text-black py-1 px-6   font-light ">
                 Start Exploring
               </button>
             </Link>
+
             <button
               onClick={() => openModal()}
-              className="bg-[#111111] text-white  hover:bg-white   hover:text-black py-1 px-6   font-light "
+              className="bg-[#111111] text-white  hover:bg-white  w-[200px]    hover:text-black py-1 px-6   font-light "
             >
               Search
-              <span className="inline-block px-2 ">
-                <Search size={14} />
-              </span>
             </button>
           </div>
         </div>

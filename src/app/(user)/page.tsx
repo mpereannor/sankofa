@@ -8,7 +8,6 @@ export default async function Home() {
   const featuredProducts = await client.fetch(getAllFeaturedProducts)
   const trendingProducts = await featuredProducts[0]["trendingProducts"]
   const mostSellingProducts = await featuredProducts[0]["mostSellingProducts"]
-  console.log("trent", mostSellingProducts)
   return (
     <div>
       <Header variant="main" />

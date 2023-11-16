@@ -50,6 +50,7 @@ export const getProductDetail = groq`
       "id": _id,
       "slug": slug.current,
         "mainImage": mainImage.asset->url,
+         link,
         category->{
             name,
             "id": _id,

@@ -9,6 +9,7 @@ export interface IProduct {
   mainImage: string
   category: ICategory
   gallery: string[]
+  link?: string
 }
 
 export interface IProductImg {

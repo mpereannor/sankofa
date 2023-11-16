@@ -166,9 +166,11 @@ const ProductModalPage = async (props: any) => {
                 </div>
                 <div className="flex justify-around md:flex-col lg:flex-row lg:justify-between md:gap-4  md:w-[80%] ">
                   <AddToCartButton product={product} />
-                  <button className="bg-[#111111] text-white hover:bg-white hover:border hover:border-[#111111] hover:text-black py-1 px-6 font-light ">
-                    View on IG
-                  </button>
+                  <a href={product?.link} target="_blank" rel="noreferrer">
+                    <button className="bg-[#111111] text-white hover:bg-white hover:border hover:border-[#111111] hover:text-black py-1 px-6 font-light ">
+                      View on IG
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>
