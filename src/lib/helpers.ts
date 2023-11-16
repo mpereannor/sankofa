@@ -19,3 +19,5 @@ export const calculateItemsTotal = (items: IItem[]): number => {
     )
 }
 
+
+

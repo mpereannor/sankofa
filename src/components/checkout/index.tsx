@@ -3,11 +3,48 @@ import { AppContext } from "@/context/AppContext"
 import { calculateItemsTotal, formatPrice, getSubstring } from "@/lib/helpers"
 import React, { useContext, useEffect, useState } from "react"
 import Image from "next/image"
+import { PaystackButton, usePaystackPayment } from "react-paystack"
+import PayButton from "../elements/PayButton"
 
 export const Checkout = () => {
   const [subTotal, setSubTotal] = useState<number>(0)
   const [tax, setTax] = useState<number>(0)
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+  })
 
+  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || ""
+  const config = {
+    reference: new Date().getTime().toString(),
+    email: userInfo.email,
+    amount: (subTotal + tax) / 100,
+    publicKey,
+  }
+
+  const componentProps = {
+    email: userInfo.email,
+    amount: (subTotal + tax) / 100,
+    metadata: {
+      name: userInfo.name,
+      phone: userInfo.phone,
+    },
+    publicKey,
+    text: "Buy Now",
+    onSuccess: ({ reference }) => {
+      alert(`Your purchase was successfuul. reference ${reference}`)
+    },
+    onClose: () => alert("wait"),
+  }
+
+  const onSuccess = (reference) => {
+    console.log(reference)
+  }
+  const onClose = () => {
+    console.log("closed")
+  }
+
+  const initializePayment = usePaystackPayment(config)
   const {
     state: { checkout },
   } = useContext(AppContext)
@@ -68,49 +105,43 @@ export const Checkout = () => {
             </h2>
           </div>
           <div className="flex flex-col px-2 py-1">
-            <div className="space-y-1 p-2 ">
-              <label className="block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
-              <input
-                type="text"
-                className="block w-full px-4 py-2  border border-gray-300 text-gray-700  focus:outline-black"
-                placeholder="Full name"
-              />
-            </div>
+            <form>
+              <div className="space-y-1 p-2 ">
+                <label className="block text-sm font-medium text-gray-700">
+                  Name
+                </label>
+                <input
+                  id="userInfo.name"
+                  type="text"
+                  className="block w-full px-4 py-2  border border-gray-300 text-gray-700  focus:outline-black"
+                  placeholder="Full name"
+                  onChange={(e) =>
+                    setUserInfo((prevUserInfo) => ({
+                      ...prevUserInfo,
+                      name: e.target.value,
+                    }))
+                  }
+                />
+              </div>
 
-            <div className="space-y-1 p-2">
-              <label className="block text-sm font-medium text-gray-700">
-                Address
-              </label>
-              <input
-                type="text"
-                className="block w-full px-4 py-2  border border-gray-300 text-gray-700 focus:outline-black"
-                placeholder="Address"
-              />
-            </div>
-
-            <div className="space-y-1 p-2">
-              <label className="block text-sm font-medium text-gray-700">
-                Phone
-              </label>
-              <input
-                type="text"
-                className="block w-full px-4 py-2  border border-gray-300 text-gray-700  focus:outline-black"
-                placeholder="Phone number"
-              />
-            </div>
-
-            <div className="space-y-1  p-2">
-              <label className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                className="block w-full px-4 py-2  border border-gray-300 text-gray-700 focus:outline-black"
-                placeholder="Email"
-              />
-            </div>
+              <div className="space-y-1  p-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  className="block w-full px-4 py-2  border border-gray-300 text-gray-700 focus:outline-black"
+                  placeholder="Email"
+                  onChange={(e) =>
+                    setUserInfo((prevUserInfo) => ({
+                      ...prevUserInfo,
+                      email: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+            </form>
+            {/* <PaystackButton {...componentProps} /> */}
           </div>
         </div>
       </div>
@@ -176,9 +207,15 @@ export const Checkout = () => {
             </div>
           </div>
 
-          <button className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light ">
+          {/* <button
+            onClick={() => {
+              initializePayment(onSuccess, onClose)
+            }}
+            className="bg-[#111111] text-white hover:border hover:bg-white hover:border-[#111111] hover:text-black py-1 px-6   font-light "
+          >
             Pay GHS {formatPrice(subTotal)}
-          </button>
+          </button> */}
+          <PayButton amount={subTotal + tax} email={userInfo.email} />
         </div>
       </div>
     </div>
