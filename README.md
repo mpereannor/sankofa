@@ -29,3 +29,7 @@ Here are screenshots that show the E-commerce demo application in use.
 
 ![Home Page](/screenshots/homepage_desktop.png?raw=true "Optional Title")
 ![Home Page Mobile](/screenshots/homepage_mobile.png?raw=true "Optional Title")
+
+
+
+
