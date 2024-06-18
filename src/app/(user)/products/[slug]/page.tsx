@@ -186,3 +186,5 @@ const ProductModalPage = async (props: any) => {
 }
 
 export default ProductModalPage
+
+export const revalidate = 60;
